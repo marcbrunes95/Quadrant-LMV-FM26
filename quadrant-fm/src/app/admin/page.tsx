@@ -5,37 +5,46 @@ import { formatWhen } from "@/lib/format";
 
 export default function Admin() {
   const [key, setKey] = useState("");
+  const [showKey, setShowKey] = useState(false);
   const [id, setId] = useState("");
   const [msg, setMsg] = useState("");
   const [events, setEvents] = useState<SlotEvent[] | null>(null);
   const [filter, setFilter] = useState("");
 
-  async function release() {
-    const r = await fetch("/api/admin/release", {
-      method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ key, id: Number(id) }),
+  async function callAdmin(path: string, body: Record<string, unknown>) {
+    const r = await fetch(path, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ key, ...body }),
     });
-    setMsg((await r.json()).ok ? `Plaça ${id} alliberada` : "Error / clau incorrecta");
-    if (events) loadHistory();
+    const j = await r.json().catch(() => ({}));
+    if (r.status === 401) return { ok: false as const, error: "Clau d'admin incorrecta" };
+    if (!j.ok) {
+      let e: string = j.error || "Error desconegut";
+      if (/slot_events|relation|does not exist/i.test(e)) {
+        e = "Falta crear la taula d'historial: executa supabase/history.sql al Supabase.";
+      }
+      return { ok: false as const, error: e };
+    }
+    return { ok: true as const, data: j };
+  }
+
+  async function release() {
+    const r = await callAdmin("/api/admin/release", { id: Number(id) });
+    setMsg(r.ok ? `Plaça ${id} alliberada` : r.error);
+    if (r.ok && events) loadHistory();
   }
 
   async function clearAll() {
     if (!confirm("Segur que vols buidar TOTES les places?")) return;
-    const r = await fetch("/api/admin/clear", {
-      method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ key }),
-    });
-    setMsg((await r.json()).ok ? "Totes les places buidades" : "Error / clau incorrecta");
+    const r = await callAdmin("/api/admin/clear", {});
+    setMsg(r.ok ? "Totes les places buidades" : r.error);
   }
 
   async function loadHistory() {
-    const r = await fetch("/api/admin/history", {
-      method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ key }),
-    });
-    const j = await r.json();
-    if (j.ok) { setEvents(j.events); setMsg(""); }
-    else { setMsg("Error / clau incorrecta"); }
+    const r = await callAdmin("/api/admin/history", {});
+    if (r.ok) { setEvents(r.data.events); setMsg(""); }
+    else { setMsg(r.error); }
   }
 
   function exportCsv() {
@@ -65,8 +74,15 @@ export default function Admin() {
       <div className="mx-auto w-full max-w-3xl space-y-4">
         <div className="bg-white rounded-xl shadow p-5 space-y-3">
           <h1 className="font-bold text-lg">Admin · Quadrant FM</h1>
-          <input value={key} onChange={(e) => setKey(e.target.value)} placeholder="Clau d'admin"
-            type="password" className="w-full border rounded px-3 py-2" />
+          <div className="relative">
+            <input value={key} onChange={(e) => setKey(e.target.value)} placeholder="Clau d'admin"
+              type={showKey ? "text" : "password"}
+              className="w-full border rounded px-3 py-2 pr-12" />
+            <button type="button" onClick={() => setShowKey((v) => !v)}
+              className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-gray-500 hover:text-gray-800">
+              {showKey ? "Amaga" : "Veure"}
+            </button>
+          </div>
           <div className="flex gap-2">
             <input value={id} onChange={(e) => setId(e.target.value)} placeholder="Nº plaça"
               className="flex-1 border rounded px-3 py-2" />
