@@ -14,8 +14,8 @@ export function useSlots() {
   const [error, setError] = useState<string | null>(null);
 
   const load = useCallback(async () => {
-    const { data, error } = await supabase.from("slots").select("id, taken_by");
-    if (error) { setError(error.message); return; }
+    const { data, error } = await supabase.from("slots").select("id, taken_by").order("id");
+    if (error) { setError(error.message); setLoading(false); return; }
     const map: Record<number, string | null> = {};
     (data as SlotState[]).forEach((r) => { map[r.id] = r.taken_by; });
     setTaken(map);
@@ -25,7 +25,7 @@ export function useSlots() {
   useEffect(() => {
     load();
     const channel = supabase
-      .channel("slots-changes")
+      .channel(`slots-changes-${Math.random().toString(36).slice(2)}`)
       .on(
         "postgres_changes",
         { event: "UPDATE", schema: "public", table: "slots" },
