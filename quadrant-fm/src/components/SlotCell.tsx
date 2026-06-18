@@ -1,15 +1,17 @@
 "use client";
 import type { Slot } from "@/lib/types";
 import { COLOR_HEX, textOn } from "@/lib/colors";
+import { formatWhen } from "@/lib/format";
 
 interface Props {
   slot: Slot;
   myName: string;
   onClaim: (id: number) => void;
   onRelease: (id: number) => void;
+  onInfo?: (msg: string) => void;
 }
 
-export function SlotCell({ slot, myName, onClaim, onRelease }: Props) {
+export function SlotCell({ slot, myName, onClaim, onRelease, onInfo }: Props) {
   const free = slot.taken_by === null;
   const mine = slot.taken_by === myName;
 
@@ -26,18 +28,31 @@ export function SlotCell({ slot, myName, onClaim, onRelease }: Props) {
     );
   }
 
+  const since = formatWhen(slot.taken_at);
+  const sinceTxt = since ? ` · des de ${since}` : "";
+
   return (
     <button
-      onClick={() => mine && onRelease(slot.id)}
-      disabled={!mine}
-      title={mine ? `Plaça ${slot.id} · toca per alliberar` : `Plaça ${slot.id} · ${slot.taken_by}`}
+      onClick={() =>
+        mine
+          ? onRelease(slot.id)
+          : onInfo?.(`Plaça ${slot.id} · ${slot.taken_by}${sinceTxt}`)
+      }
+      title={
+        mine
+          ? `Plaça ${slot.id} · toca per alliberar${since ? ` (des de ${since})` : ""}`
+          : `Plaça ${slot.id} · ${slot.taken_by}${sinceTxt}`
+      }
       className={`h-9 w-[4.25rem] shrink-0 rounded-md border px-1 leading-none overflow-hidden flex flex-col items-center justify-center ${
         mine
           ? "bg-pink-600 text-white border-pink-700"
-          : "bg-gray-200 text-gray-600 border-gray-300 cursor-not-allowed"
+          : "bg-gray-200 text-gray-600 border-gray-300"
       }`}
     >
-      <span className="text-[9px] opacity-70">#{slot.id}{mine ? " ✕" : ""}</span>
+      <span className="text-[9px] opacity-70">
+        #{slot.id}
+        {mine ? " ✕" : ""}
+      </span>
       <span className="block w-full truncate text-[11px] font-semibold">{slot.taken_by}</span>
     </button>
   );

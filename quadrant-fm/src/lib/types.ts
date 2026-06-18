@@ -16,11 +16,22 @@ export interface SlotMeta {
 export interface SlotState {
   id: number;
   taken_by: string | null;
+  taken_at: string | null;
 }
 
 /** Merged view used by the UI. */
 export interface Slot extends SlotMeta {
   taken_by: string | null;
+  taken_at: string | null;
+}
+
+/** A logged claim/release action. */
+export interface SlotEvent {
+  id: number;
+  slot_id: number;
+  person: string;
+  action: "claim" | "release";
+  created_at: string;
 }
 
 export interface GridRow {

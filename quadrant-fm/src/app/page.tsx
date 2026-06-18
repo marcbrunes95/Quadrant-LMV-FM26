@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { useSlots } from "@/hooks/useSlots";
 import { computeStats, FM_COLS, FRIGO_COLS } from "@/lib/grid";
 import { NameGate } from "@/components/NameGate";
@@ -12,7 +12,15 @@ const NAME_KEY = "quadrant-fm-name";
 export default function Home() {
   const [name, setName] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
+  const [info, setInfo] = useState<string | null>(null);
+  const infoTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { slots, loading, error, claim, release } = useSlots();
+
+  const showInfo = useCallback((msg: string) => {
+    setInfo(msg);
+    if (infoTimer.current) clearTimeout(infoTimer.current);
+    infoTimer.current = setTimeout(() => setInfo(null), 3500);
+  }, []);
 
   useEffect(() => {
     setName(localStorage.getItem(NAME_KEY));
@@ -72,12 +80,18 @@ export default function Home() {
         ) : (
           <>
             <ShiftGrid title="Prèvia i Festa Major" slots={fm} cols={FM_COLS}
-              myName={name} onClaim={(id) => claim(id, name)} onRelease={(id) => release(id, name)} />
+              myName={name} onClaim={(id) => claim(id, name)} onRelease={(id) => release(id, name)} onInfo={showInfo} />
             <ShiftGrid title="Frigofiesta" slots={frigo} cols={FRIGO_COLS}
-              myName={name} onClaim={(id) => claim(id, name)} onRelease={(id) => release(id, name)} />
+              myName={name} onClaim={(id) => claim(id, name)} onRelease={(id) => release(id, name)} onInfo={showInfo} />
           </>
         )}
       </div>
+
+      {info && (
+        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-20 max-w-[90vw] rounded-full bg-gray-900 text-white text-sm px-4 py-2 shadow-lg">
+          {info}
+        </div>
+      )}
     </main>
   );
 }

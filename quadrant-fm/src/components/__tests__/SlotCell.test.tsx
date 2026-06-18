@@ -5,7 +5,7 @@ import type { Slot } from "@/lib/types";
 
 const base: Slot = {
   id: 5, table: "FM", block: "B", time: "t", tag: null,
-  color: "verd", col: "C", taken_by: null,
+  color: "verd", col: "C", taken_by: null, taken_at: null,
 };
 
 describe("SlotCell", () => {

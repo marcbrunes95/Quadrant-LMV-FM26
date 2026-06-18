@@ -10,9 +10,10 @@ interface Props {
   myName: string;
   onClaim: (id: number) => void;
   onRelease: (id: number) => void;
+  onInfo?: (msg: string) => void;
 }
 
-export function ShiftGrid({ title, slots, cols, myName, onClaim, onRelease }: Props) {
+export function ShiftGrid({ title, slots, cols, myName, onClaim, onRelease, onInfo }: Props) {
   const blocks = buildGrid(slots, cols);
 
   return (
@@ -39,6 +40,7 @@ export function ShiftGrid({ title, slots, cols, myName, onClaim, onRelease }: Pr
                           myName={myName}
                           onClaim={onClaim}
                           onRelease={onRelease}
+                          onInfo={onInfo}
                         />
                       ))}
                   </div>

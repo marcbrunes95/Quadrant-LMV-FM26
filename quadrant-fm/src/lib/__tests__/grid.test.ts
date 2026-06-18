@@ -5,7 +5,7 @@ import type { Slot } from "../types";
 function slot(p: Partial<Slot>): Slot {
   return {
     id: 1, table: "FM", block: "B1", time: "t1", tag: null,
-    color: "verd", col: "C", taken_by: null, ...p,
+    color: "verd", col: "C", taken_by: null, taken_at: null, ...p,
   };
 }
 
