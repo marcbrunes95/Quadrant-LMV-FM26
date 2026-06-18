@@ -14,6 +14,14 @@ export const COLOR_LABEL: Record<SlotColor, string> = {
   blanc: "Indiferent l'experiència que tinguis",
 };
 
+/** Short labels for the compact legend. */
+export const COLOR_SHORT: Record<SlotColor, string> = {
+  roig: "Veterans (cap de barra)",
+  vermell: "Experiència +7 barres",
+  verd: "Poca/gens experiència",
+  blanc: "Indiferent",
+};
+
 export const LEGEND_ORDER: SlotColor[] = ["roig", "vermell", "verd", "blanc"];
 
 /** Text colour that stays readable on each slot background. */

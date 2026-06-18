@@ -14,35 +14,39 @@ interface Props {
 
 export function ShiftGrid({ title, slots, cols, myName, onClaim, onRelease }: Props) {
   const blocks = buildGrid(slots, cols);
-  // grid template: time label + tag + one column per slot column
-  const gridCols = `120px 110px repeat(${cols.length}, minmax(72px, 1fr))`;
 
   return (
-    <section className="mb-10">
-      <h2 className="text-lg font-extrabold text-pink-700 mb-3">{title}</h2>
-      <div className="overflow-x-auto">
-        <div className="min-w-max space-y-6">
-          {blocks.map((block) => (
-            <div key={block.block}>
-              <h3 className="text-sm font-bold text-gray-700 mb-2">{block.block}</h3>
-              <div className="space-y-1.5">
-                {block.rows.map((row, i) => (
-                  <div key={i} className="grid items-stretch gap-1.5" style={{ gridTemplateColumns: gridCols }}>
-                    <div className="flex items-center text-xs font-semibold text-gray-700">{row.time}</div>
-                    <div className="flex items-center text-xs italic text-gray-500">{row.tag ?? ""}</div>
-                    {row.cells.map((cell, ci) =>
-                      cell ? (
-                        <SlotCell key={ci} slot={cell} myName={myName} onClaim={onClaim} onRelease={onRelease} />
-                      ) : (
-                        <div key={ci} className="h-14 w-full rounded-md bg-gray-100 border border-gray-200" />
-                      ),
-                    )}
+    <section className="mb-6">
+      <h2 className="text-base font-extrabold text-pink-700 mb-2">{title}</h2>
+      <div className="space-y-4">
+        {blocks.map((block) => (
+          <div key={block.block}>
+            <h3 className="text-xs font-bold text-gray-700 mb-1.5">{block.block}</h3>
+            <div className="space-y-1.5">
+              {block.rows.map((row, i) => (
+                <div key={i} className="flex gap-2">
+                  <div className="w-14 shrink-0 flex flex-col justify-center leading-tight">
+                    <span className="text-[11px] font-semibold text-gray-700">{row.time}</span>
+                    {row.tag && <span className="text-[9px] italic text-gray-500">{row.tag}</span>}
                   </div>
-                ))}
-              </div>
+                  <div className="flex flex-wrap gap-1">
+                    {row.cells
+                      .filter((c): c is Slot => c !== null)
+                      .map((cell) => (
+                        <SlotCell
+                          key={cell.id}
+                          slot={cell}
+                          myName={myName}
+                          onClaim={onClaim}
+                          onRelease={onRelease}
+                        />
+                      ))}
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );

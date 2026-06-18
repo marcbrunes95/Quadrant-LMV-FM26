@@ -35,11 +35,11 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-pink-50">
       <header className="sticky top-0 z-10 bg-white/95 backdrop-blur border-b border-pink-200 shadow-sm">
-        <div className="max-w-6xl mx-auto px-4 py-3 space-y-3">
-          <div className="flex items-center justify-between gap-4">
+        <div className="max-w-6xl mx-auto px-3 py-2 space-y-2">
+          <div className="flex items-center justify-between gap-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/lamamave.png" alt="La Mama Ve" className="h-9" />
-            <div className="text-sm text-gray-600">
+            <img src="/lamamave.png" alt="La Mama Ve" className="h-7" />
+            <div className="text-xs text-gray-600">
               Hola, <strong className="text-pink-700">{name}</strong>{" "}
               <button
                 onClick={() => { localStorage.removeItem(NAME_KEY); setName(null); }}
@@ -54,7 +54,7 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="max-w-6xl mx-auto px-4 py-6">
+      <div className="max-w-6xl mx-auto px-3 py-4">
         {error && <p className="text-red-600 mb-4">Error: {error}</p>}
         {loading ? (
           <p className="text-gray-500">Carregant…</p>
