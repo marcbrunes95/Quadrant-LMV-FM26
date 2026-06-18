@@ -50,7 +50,18 @@ export default function Home() {
             </div>
           </div>
           <StatsBar stats={stats} />
-          <Legend />
+          <div className="flex items-start justify-between gap-3">
+            <Legend />
+            <a
+              href="/Programa_Festa_Major_2026.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Descarrega el programa de Festa Major"
+              className="shrink-0 inline-flex items-center gap-1 rounded-full bg-pink-600 text-white text-[11px] font-semibold px-2.5 py-1 hover:bg-pink-700"
+            >
+              <span aria-hidden>📄</span> Programa
+            </a>
+          </div>
         </div>
       </header>
 

@@ -17,7 +17,7 @@ export function ShiftGrid({ title, slots, cols, myName, onClaim, onRelease }: Pr
 
   return (
     <section className="mb-6">
-      <h2 className="text-base font-extrabold text-pink-700 mb-2">{title}</h2>
+      <h2 className="text-xl font-extrabold text-pink-700 mb-2">{title}</h2>
       <div className="space-y-4">
         {blocks.map((block) => (
           <div key={block.block}>
