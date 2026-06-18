@@ -13,8 +13,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://quadrant-lmv-fm-26.vercel.app"),
   title: "Quadrant FM 2026 · La Mama Ve",
-  description: "Apunta't als torns de la festa major",
+  description: "Apunta't als torns de la festa major 💪",
+  openGraph: {
+    title: "Quadrant FM 2026 · La Mama Ve",
+    description: "Apunta't als torns de la festa major 💪",
+    url: "https://quadrant-lmv-fm-26.vercel.app",
+    siteName: "La Mama Ve",
+    locale: "ca_ES",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Quadrant FM 2026 · La Mama Ve",
+    description: "Apunta't als torns de la festa major 💪",
+  },
 };
 
 export default function RootLayout({
