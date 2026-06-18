@@ -1,0 +1,1492 @@
+[
+ {
+  "id": 1,
+  "table": "FM",
+  "block": "Prèvia dissabte 27/06",
+  "time": "16:00",
+  "tag": "Muntatge",
+  "color": "blanc",
+  "col": "C",
+  "oldNum": 1
+ },
+ {
+  "id": 2,
+  "table": "FM",
+  "block": "Prèvia dissabte 27/06",
+  "time": "16:00",
+  "tag": "Muntatge",
+  "color": "blanc",
+  "col": "D",
+  "oldNum": 2
+ },
+ {
+  "id": 3,
+  "table": "FM",
+  "block": "Prèvia dissabte 27/06",
+  "time": "16:00",
+  "tag": "Muntatge",
+  "color": "blanc",
+  "col": "E",
+  "oldNum": 3
+ },
+ {
+  "id": 4,
+  "table": "FM",
+  "block": "Prèvia dissabte 27/06",
+  "time": "16:00",
+  "tag": "Muntatge",
+  "color": "blanc",
+  "col": "F",
+  "oldNum": 4
+ },
+ {
+  "id": 5,
+  "table": "FM",
+  "block": "Prèvia dissabte 27/06",
+  "time": "16:00",
+  "tag": "Muntatge",
+  "color": "blanc",
+  "col": "G",
+  "oldNum": 5
+ },
+ {
+  "id": 6,
+  "table": "FM",
+  "block": "Prèvia dissabte 27/06",
+  "time": "16:00",
+  "tag": "Muntatge",
+  "color": "blanc",
+  "col": "H",
+  "oldNum": 6
+ },
+ {
+  "id": 7,
+  "table": "FM",
+  "block": "Prèvia dissabte 27/06",
+  "time": "23:00-1:15",
+  "tag": null,
+  "color": "verd",
+  "col": "C",
+  "oldNum": 7
+ },
+ {
+  "id": 8,
+  "table": "FM",
+  "block": "Prèvia dissabte 27/06",
+  "time": "23:00-1:15",
+  "tag": null,
+  "color": "verd",
+  "col": "D",
+  "oldNum": 8
+ },
+ {
+  "id": 9,
+  "table": "FM",
+  "block": "Prèvia dissabte 27/06",
+  "time": "23:00-1:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "E",
+  "oldNum": 144
+ },
+ {
+  "id": 10,
+  "table": "FM",
+  "block": "Prèvia dissabte 27/06",
+  "time": "23:00-1:15",
+  "tag": null,
+  "color": "roig",
+  "col": "K",
+  "oldNum": 9
+ },
+ {
+  "id": 11,
+  "table": "FM",
+  "block": "Prèvia dissabte 27/06",
+  "time": "23:00-1:15",
+  "tag": null,
+  "color": "verd",
+  "col": "L",
+  "oldNum": 10
+ },
+ {
+  "id": 12,
+  "table": "FM",
+  "block": "Prèvia dissabte 27/06",
+  "time": "1:00-3:00",
+  "tag": null,
+  "color": "verd",
+  "col": "C",
+  "oldNum": 11
+ },
+ {
+  "id": 13,
+  "table": "FM",
+  "block": "Prèvia dissabte 27/06",
+  "time": "1:00-3:00",
+  "tag": null,
+  "color": "verd",
+  "col": "D",
+  "oldNum": 12
+ },
+ {
+  "id": 14,
+  "table": "FM",
+  "block": "Prèvia dissabte 27/06",
+  "time": "1:00-3:00",
+  "tag": null,
+  "color": "vermell",
+  "col": "E",
+  "oldNum": 145
+ },
+ {
+  "id": 15,
+  "table": "FM",
+  "block": "Prèvia dissabte 27/06",
+  "time": "1:00-3:00",
+  "tag": null,
+  "color": "roig",
+  "col": "K",
+  "oldNum": 13
+ },
+ {
+  "id": 16,
+  "table": "FM",
+  "block": "Prèvia dissabte 27/06",
+  "time": "1:00-3:00",
+  "tag": null,
+  "color": "verd",
+  "col": "L",
+  "oldNum": 14
+ },
+ {
+  "id": 17,
+  "table": "FM",
+  "block": "Prèvia dissabte 27/06",
+  "time": "03:00",
+  "tag": "Desmuntatge",
+  "color": "blanc",
+  "col": "C",
+  "oldNum": 15
+ },
+ {
+  "id": 18,
+  "table": "FM",
+  "block": "Prèvia dissabte 27/06",
+  "time": "03:00",
+  "tag": "Desmuntatge",
+  "color": "blanc",
+  "col": "D",
+  "oldNum": 16
+ },
+ {
+  "id": 19,
+  "table": "FM",
+  "block": "Prèvia dissabte 27/06",
+  "time": "03:00",
+  "tag": "Desmuntatge",
+  "color": "blanc",
+  "col": "E",
+  "oldNum": 17
+ },
+ {
+  "id": 20,
+  "table": "FM",
+  "block": "Prèvia dissabte 27/06",
+  "time": "03:00",
+  "tag": "Desmuntatge",
+  "color": "blanc",
+  "col": "F",
+  "oldNum": 18
+ },
+ {
+  "id": 21,
+  "table": "FM",
+  "block": "Prèvia dissabte 27/06",
+  "time": "03:00",
+  "tag": "Desmuntatge",
+  "color": "blanc",
+  "col": "G",
+  "oldNum": 19
+ },
+ {
+  "id": 22,
+  "table": "FM",
+  "block": "Prèvia dissabte 27/06",
+  "time": "03:00",
+  "tag": "Desmuntatge",
+  "color": "blanc",
+  "col": "H",
+  "oldNum": 20
+ },
+ {
+  "id": 23,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "16:00",
+  "tag": "Muntatge",
+  "color": "blanc",
+  "col": "C",
+  "oldNum": 21
+ },
+ {
+  "id": 24,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "16:00",
+  "tag": "Muntatge",
+  "color": "blanc",
+  "col": "D",
+  "oldNum": 22
+ },
+ {
+  "id": 25,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "16:00",
+  "tag": "Muntatge",
+  "color": "blanc",
+  "col": "E",
+  "oldNum": 23
+ },
+ {
+  "id": 26,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "16:00",
+  "tag": "Muntatge",
+  "color": "blanc",
+  "col": "F",
+  "oldNum": 24
+ },
+ {
+  "id": 27,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "16:00",
+  "tag": "Muntatge",
+  "color": "blanc",
+  "col": "G",
+  "oldNum": 25
+ },
+ {
+  "id": 28,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "16:00",
+  "tag": "Muntatge",
+  "color": "blanc",
+  "col": "H",
+  "oldNum": 26
+ },
+ {
+  "id": 29,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "22:30-00:15",
+  "tag": null,
+  "color": "verd",
+  "col": "C",
+  "oldNum": 27
+ },
+ {
+  "id": 30,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "22:30-00:15",
+  "tag": null,
+  "color": "verd",
+  "col": "D",
+  "oldNum": 28
+ },
+ {
+  "id": 31,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "22:30-00:15",
+  "tag": null,
+  "color": "verd",
+  "col": "F",
+  "oldNum": 29
+ },
+ {
+  "id": 32,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "22:30-00:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "G",
+  "oldNum": 30
+ },
+ {
+  "id": 33,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "22:30-00:15",
+  "tag": null,
+  "color": "roig",
+  "col": "K",
+  "oldNum": 31
+ },
+ {
+  "id": 34,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "22:30-00:15",
+  "tag": null,
+  "color": "verd",
+  "col": "L",
+  "oldNum": 32
+ },
+ {
+  "id": 35,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "22:30-00:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "M",
+  "oldNum": 33
+ },
+ {
+  "id": 36,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "verd",
+  "col": "C",
+  "oldNum": 34
+ },
+ {
+  "id": 37,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "verd",
+  "col": "D",
+  "oldNum": 35
+ },
+ {
+  "id": 38,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "verd",
+  "col": "E",
+  "oldNum": 36
+ },
+ {
+  "id": 39,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "F",
+  "oldNum": 37
+ },
+ {
+  "id": 40,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "G",
+  "oldNum": 38
+ },
+ {
+  "id": 41,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "verd",
+  "col": "I",
+  "oldNum": 39
+ },
+ {
+  "id": 42,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "roig",
+  "col": "K",
+  "oldNum": 40
+ },
+ {
+  "id": 43,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "L",
+  "oldNum": 41
+ },
+ {
+  "id": 44,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "M",
+  "oldNum": 42
+ },
+ {
+  "id": 45,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "verd",
+  "col": "C",
+  "oldNum": 43
+ },
+ {
+  "id": 46,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "verd",
+  "col": "D",
+  "oldNum": 44
+ },
+ {
+  "id": 47,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "vermell",
+  "col": "E",
+  "oldNum": 45
+ },
+ {
+  "id": 48,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "vermell",
+  "col": "F",
+  "oldNum": 46
+ },
+ {
+  "id": 49,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "vermell",
+  "col": "G",
+  "oldNum": 47
+ },
+ {
+  "id": 50,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "verd",
+  "col": "I",
+  "oldNum": 48
+ },
+ {
+  "id": 51,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "roig",
+  "col": "K",
+  "oldNum": 49
+ },
+ {
+  "id": 52,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "vermell",
+  "col": "L",
+  "oldNum": 50
+ },
+ {
+  "id": 53,
+  "table": "FM",
+  "block": "FM dijous 2/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "vermell",
+  "col": "M",
+  "oldNum": 51
+ },
+ {
+  "id": 54,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "22:30-00:15",
+  "tag": null,
+  "color": "verd",
+  "col": "C",
+  "oldNum": 52
+ },
+ {
+  "id": 55,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "22:30-00:15",
+  "tag": null,
+  "color": "verd",
+  "col": "D",
+  "oldNum": 53
+ },
+ {
+  "id": 56,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "22:30-00:15",
+  "tag": null,
+  "color": "verd",
+  "col": "F",
+  "oldNum": 54
+ },
+ {
+  "id": 57,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "22:30-00:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "G",
+  "oldNum": 55
+ },
+ {
+  "id": 58,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "22:30-00:15",
+  "tag": null,
+  "color": "roig",
+  "col": "K",
+  "oldNum": 56
+ },
+ {
+  "id": 59,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "22:30-00:15",
+  "tag": null,
+  "color": "verd",
+  "col": "L",
+  "oldNum": 57
+ },
+ {
+  "id": 60,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "22:30-00:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "M",
+  "oldNum": 58
+ },
+ {
+  "id": 61,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "verd",
+  "col": "C",
+  "oldNum": 59
+ },
+ {
+  "id": 62,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "verd",
+  "col": "D",
+  "oldNum": 60
+ },
+ {
+  "id": 63,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "verd",
+  "col": "E",
+  "oldNum": 61
+ },
+ {
+  "id": 64,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "F",
+  "oldNum": 62
+ },
+ {
+  "id": 65,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "G",
+  "oldNum": 63
+ },
+ {
+  "id": 66,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "H",
+  "oldNum": 64
+ },
+ {
+  "id": 67,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "verd",
+  "col": "I",
+  "oldNum": 65
+ },
+ {
+  "id": 68,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "J",
+  "oldNum": 66
+ },
+ {
+  "id": 69,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "roig",
+  "col": "K",
+  "oldNum": 67
+ },
+ {
+  "id": 70,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "L",
+  "oldNum": 68
+ },
+ {
+  "id": 71,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "M",
+  "oldNum": 69
+ },
+ {
+  "id": 72,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "verd",
+  "col": "C",
+  "oldNum": 70
+ },
+ {
+  "id": 73,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "verd",
+  "col": "D",
+  "oldNum": 71
+ },
+ {
+  "id": 74,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "vermell",
+  "col": "E",
+  "oldNum": 72
+ },
+ {
+  "id": 75,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "vermell",
+  "col": "F",
+  "oldNum": 73
+ },
+ {
+  "id": 76,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "vermell",
+  "col": "G",
+  "oldNum": 74
+ },
+ {
+  "id": 77,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "vermell",
+  "col": "H",
+  "oldNum": 75
+ },
+ {
+  "id": 78,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "verd",
+  "col": "I",
+  "oldNum": 76
+ },
+ {
+  "id": 79,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "vermell",
+  "col": "J",
+  "oldNum": 77
+ },
+ {
+  "id": 80,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "roig",
+  "col": "K",
+  "oldNum": 78
+ },
+ {
+  "id": 81,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "vermell",
+  "col": "L",
+  "oldNum": 79
+ },
+ {
+  "id": 82,
+  "table": "FM",
+  "block": "FM divendres 3/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "vermell",
+  "col": "M",
+  "oldNum": 80
+ },
+ {
+  "id": 83,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "22:00-00:15",
+  "tag": null,
+  "color": "verd",
+  "col": "C",
+  "oldNum": 81
+ },
+ {
+  "id": 84,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "22:00-00:15",
+  "tag": null,
+  "color": "verd",
+  "col": "D",
+  "oldNum": 82
+ },
+ {
+  "id": 85,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "22:00-00:15",
+  "tag": null,
+  "color": "verd",
+  "col": "F",
+  "oldNum": 83
+ },
+ {
+  "id": 86,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "22:00-00:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "G",
+  "oldNum": 84
+ },
+ {
+  "id": 87,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "22:00-00:15",
+  "tag": null,
+  "color": "roig",
+  "col": "K",
+  "oldNum": 85
+ },
+ {
+  "id": 88,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "22:00-00:15",
+  "tag": null,
+  "color": "verd",
+  "col": "L",
+  "oldNum": 86
+ },
+ {
+  "id": 89,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "22:00-00:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "M",
+  "oldNum": 87
+ },
+ {
+  "id": 90,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "verd",
+  "col": "C",
+  "oldNum": 88
+ },
+ {
+  "id": 91,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "verd",
+  "col": "D",
+  "oldNum": 89
+ },
+ {
+  "id": 92,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "verd",
+  "col": "E",
+  "oldNum": 90
+ },
+ {
+  "id": 93,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "F",
+  "oldNum": 91
+ },
+ {
+  "id": 94,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "G",
+  "oldNum": 92
+ },
+ {
+  "id": 95,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "H",
+  "oldNum": 93
+ },
+ {
+  "id": 96,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "verd",
+  "col": "I",
+  "oldNum": 94
+ },
+ {
+  "id": 97,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "J",
+  "oldNum": 95
+ },
+ {
+  "id": 98,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "roig",
+  "col": "K",
+  "oldNum": 96
+ },
+ {
+  "id": 99,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "L",
+  "oldNum": 97
+ },
+ {
+  "id": 100,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "00:00-2:15",
+  "tag": null,
+  "color": "vermell",
+  "col": "M",
+  "oldNum": 98
+ },
+ {
+  "id": 101,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "verd",
+  "col": "C",
+  "oldNum": 99
+ },
+ {
+  "id": 102,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "verd",
+  "col": "D",
+  "oldNum": 100
+ },
+ {
+  "id": 103,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "vermell",
+  "col": "E",
+  "oldNum": 101
+ },
+ {
+  "id": 104,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "vermell",
+  "col": "F",
+  "oldNum": 102
+ },
+ {
+  "id": 105,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "vermell",
+  "col": "G",
+  "oldNum": 103
+ },
+ {
+  "id": 106,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "vermell",
+  "col": "H",
+  "oldNum": 104
+ },
+ {
+  "id": 107,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "verd",
+  "col": "I",
+  "oldNum": 105
+ },
+ {
+  "id": 108,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "vermell",
+  "col": "J",
+  "oldNum": 106
+ },
+ {
+  "id": 109,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "roig",
+  "col": "K",
+  "oldNum": 107
+ },
+ {
+  "id": 110,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "vermell",
+  "col": "L",
+  "oldNum": 108
+ },
+ {
+  "id": 111,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "2:00-4:00",
+  "tag": null,
+  "color": "vermell",
+  "col": "M",
+  "oldNum": 109
+ },
+ {
+  "id": 112,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "04:00",
+  "tag": "Desmuntatge",
+  "color": "blanc",
+  "col": "C",
+  "oldNum": 110
+ },
+ {
+  "id": 113,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "04:00",
+  "tag": "Desmuntatge",
+  "color": "blanc",
+  "col": "D",
+  "oldNum": 111
+ },
+ {
+  "id": 114,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "04:00",
+  "tag": "Desmuntatge",
+  "color": "blanc",
+  "col": "E",
+  "oldNum": 112
+ },
+ {
+  "id": 115,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "04:00",
+  "tag": "Desmuntatge",
+  "color": "blanc",
+  "col": "F",
+  "oldNum": 113
+ },
+ {
+  "id": 116,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "04:00",
+  "tag": "Desmuntatge",
+  "color": "blanc",
+  "col": "G",
+  "oldNum": 114
+ },
+ {
+  "id": 117,
+  "table": "FM",
+  "block": "FM dissabte 4/07",
+  "time": "04:00",
+  "tag": "Desmuntatge",
+  "color": "blanc",
+  "col": "H",
+  "oldNum": 115
+ },
+ {
+  "id": 118,
+  "table": "FRIGO",
+  "block": "Frigofiesta 26/06",
+  "time": "19:00",
+  "tag": null,
+  "color": "blanc",
+  "col": "C",
+  "oldNum": 116
+ },
+ {
+  "id": 119,
+  "table": "FRIGO",
+  "block": "Frigofiesta 26/06",
+  "time": "19:00",
+  "tag": null,
+  "color": "blanc",
+  "col": "D",
+  "oldNum": 117
+ },
+ {
+  "id": 120,
+  "table": "FRIGO",
+  "block": "Frigofiesta 26/06",
+  "time": "19:00",
+  "tag": null,
+  "color": "blanc",
+  "col": "E",
+  "oldNum": 118
+ },
+ {
+  "id": 121,
+  "table": "FRIGO",
+  "block": "Frigofiesta 26/06",
+  "time": "19:00",
+  "tag": null,
+  "color": "blanc",
+  "col": "F",
+  "oldNum": 119
+ },
+ {
+  "id": 122,
+  "table": "FRIGO",
+  "block": "Frigofiesta 27/06",
+  "time": "09:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "C",
+  "oldNum": 120
+ },
+ {
+  "id": 123,
+  "table": "FRIGO",
+  "block": "Frigofiesta 27/06",
+  "time": "09:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "D",
+  "oldNum": 121
+ },
+ {
+  "id": 124,
+  "table": "FRIGO",
+  "block": "Frigofiesta 27/06",
+  "time": "09:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "E",
+  "oldNum": 122
+ },
+ {
+  "id": 125,
+  "table": "FRIGO",
+  "block": "Frigofiesta 27/06",
+  "time": "09:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "F",
+  "oldNum": 123
+ },
+ {
+  "id": 126,
+  "table": "FRIGO",
+  "block": "Frigofiesta 27/06",
+  "time": "18:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "C",
+  "oldNum": null
+ },
+ {
+  "id": 127,
+  "table": "FRIGO",
+  "block": "Frigofiesta 27/06",
+  "time": "18:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "D",
+  "oldNum": null
+ },
+ {
+  "id": 128,
+  "table": "FRIGO",
+  "block": "Frigofiesta 27/06",
+  "time": "18:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "E",
+  "oldNum": null
+ },
+ {
+  "id": 129,
+  "table": "FRIGO",
+  "block": "Frigofiesta 27/06",
+  "time": "18:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "F",
+  "oldNum": null
+ },
+ {
+  "id": 130,
+  "table": "FRIGO",
+  "block": "Frigofiesta 28/06",
+  "time": "16:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "C",
+  "oldNum": 124
+ },
+ {
+  "id": 131,
+  "table": "FRIGO",
+  "block": "Frigofiesta 28/06",
+  "time": "16:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "D",
+  "oldNum": 125
+ },
+ {
+  "id": 132,
+  "table": "FRIGO",
+  "block": "Frigofiesta 28/06",
+  "time": "16:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "E",
+  "oldNum": 126
+ },
+ {
+  "id": 133,
+  "table": "FRIGO",
+  "block": "Frigofiesta 28/06",
+  "time": "16:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "F",
+  "oldNum": 127
+ },
+ {
+  "id": 134,
+  "table": "FRIGO",
+  "block": "Frigofiesta 03/07",
+  "time": "18:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "C",
+  "oldNum": 128
+ },
+ {
+  "id": 135,
+  "table": "FRIGO",
+  "block": "Frigofiesta 03/07",
+  "time": "18:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "D",
+  "oldNum": 129
+ },
+ {
+  "id": 136,
+  "table": "FRIGO",
+  "block": "Frigofiesta 03/07",
+  "time": "18:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "E",
+  "oldNum": 130
+ },
+ {
+  "id": 137,
+  "table": "FRIGO",
+  "block": "Frigofiesta 03/07",
+  "time": "18:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "F",
+  "oldNum": 131
+ },
+ {
+  "id": 138,
+  "table": "FRIGO",
+  "block": "Frigofiesta 04/07",
+  "time": "12:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "C",
+  "oldNum": 132
+ },
+ {
+  "id": 139,
+  "table": "FRIGO",
+  "block": "Frigofiesta 04/07",
+  "time": "12:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "D",
+  "oldNum": 133
+ },
+ {
+  "id": 140,
+  "table": "FRIGO",
+  "block": "Frigofiesta 04/07",
+  "time": "12:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "E",
+  "oldNum": 134
+ },
+ {
+  "id": 141,
+  "table": "FRIGO",
+  "block": "Frigofiesta 04/07",
+  "time": "12:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "F",
+  "oldNum": 135
+ },
+ {
+  "id": 142,
+  "table": "FRIGO",
+  "block": "Frigofiesta 04/07",
+  "time": "18:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "C",
+  "oldNum": 136
+ },
+ {
+  "id": 143,
+  "table": "FRIGO",
+  "block": "Frigofiesta 04/07",
+  "time": "18:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "D",
+  "oldNum": 137
+ },
+ {
+  "id": 144,
+  "table": "FRIGO",
+  "block": "Frigofiesta 04/07",
+  "time": "18:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "E",
+  "oldNum": 138
+ },
+ {
+  "id": 145,
+  "table": "FRIGO",
+  "block": "Frigofiesta 04/07",
+  "time": "18:30",
+  "tag": null,
+  "color": "blanc",
+  "col": "F",
+  "oldNum": 139
+ },
+ {
+  "id": 146,
+  "table": "FRIGO",
+  "block": "Frigofiesta 05/07",
+  "time": "19:00",
+  "tag": null,
+  "color": "blanc",
+  "col": "C",
+  "oldNum": 140
+ },
+ {
+  "id": 147,
+  "table": "FRIGO",
+  "block": "Frigofiesta 05/07",
+  "time": "19:00",
+  "tag": null,
+  "color": "blanc",
+  "col": "D",
+  "oldNum": 141
+ },
+ {
+  "id": 148,
+  "table": "FRIGO",
+  "block": "Frigofiesta 05/07",
+  "time": "19:00",
+  "tag": null,
+  "color": "blanc",
+  "col": "E",
+  "oldNum": 142
+ },
+ {
+  "id": 149,
+  "table": "FRIGO",
+  "block": "Frigofiesta 05/07",
+  "time": "19:00",
+  "tag": null,
+  "color": "blanc",
+  "col": "F",
+  "oldNum": 143
+ }
+]
