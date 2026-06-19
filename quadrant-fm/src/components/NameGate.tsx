@@ -53,10 +53,13 @@ export function NameGate({ onEnter }: { onEnter: (user: User) => void }) {
             autoFocus
             value={id}
             onChange={(e) => setId(e.target.value)}
-            placeholder="El teu DNI / NIE sense lletra"
+            placeholder="Número¹ de soci/a (X2345678)"
             autoComplete="off"
-            className="w-full border border-gray-300 rounded-lg px-4 py-3 mb-3 text-center tracking-wide"
+            className="w-full border border-gray-300 rounded-lg px-4 py-3 mb-1.5 text-center tracking-wide"
           />
+          <p className="text-left text-[11px] text-gray-500 mb-4">
+            ¹ El teu número de soci/a és el DNI/NIE sense la lletra final de control.
+          </p>
 
           <label className="flex items-start gap-2 text-left text-xs text-gray-600 mb-4 cursor-pointer">
             <input
