@@ -17,18 +17,34 @@ export function ShiftGrid({ title, slots, cols, myName, onClaim, onRelease, onIn
   const blocks = buildGrid(slots, cols);
 
   return (
-    <section className="mb-6">
-      <h2 className="text-xl font-extrabold text-pink-700 mb-2">{title}</h2>
+    <section className="mb-8">
+      {/* Nivell 1 — Activitat */}
+      <h2 className="text-xl font-extrabold text-white bg-pink-600 rounded-lg px-3 py-2 mb-3 shadow-sm">
+        {title}
+      </h2>
+
       <div className="space-y-4">
         {blocks.map((block) => (
-          <div key={block.block}>
-            <h3 className="text-xs font-bold text-gray-700 mb-1.5">{block.block}</h3>
-            <div className="space-y-1.5">
+          /* Nivell 2 — Dia */
+          <div key={block.block} className="rounded-lg border border-pink-100 overflow-hidden bg-white">
+            <h3 className="text-sm font-bold text-pink-800 bg-pink-50 border-b border-pink-100 px-3 py-2">
+              {block.block}
+            </h3>
+
+            <div className="p-2.5 space-y-3">
               {block.rows.map((row, i) => (
-                <div key={i} className="flex gap-2">
-                  <div className="w-14 shrink-0 flex flex-col justify-center leading-tight">
-                    <span className="text-[11px] font-semibold text-gray-700">{row.time}</span>
-                    {row.tag && <span className="text-[9px] italic text-gray-500">{row.tag}</span>}
+                /* Nivell 3 — Franja horària */
+                <div key={i}>
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-gray-700 bg-gray-100 rounded-full px-2 py-0.5">
+                      <span aria-hidden>🕒</span>
+                      {row.time}
+                    </span>
+                    {row.tag && (
+                      <span className="text-[10px] font-medium uppercase tracking-wide text-pink-500">
+                        {row.tag}
+                      </span>
+                    )}
                   </div>
                   <div className="flex flex-wrap gap-1">
                     {row.cells
