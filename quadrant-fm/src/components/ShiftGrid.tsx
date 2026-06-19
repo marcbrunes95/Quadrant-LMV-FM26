@@ -36,12 +36,12 @@ export function ShiftGrid({ title, slots, cols, myName, onClaim, onRelease, onIn
                 /* Nivell 3 — Franja horària */
                 <div key={i}>
                   <div className="flex items-center gap-2 mb-1.5">
-                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-gray-700 bg-gray-100 rounded-full px-2 py-0.5">
+                    <span className="inline-flex items-center gap-1 text-sm font-bold text-gray-800 bg-gray-100 rounded-full px-2.5 py-1">
                       <span aria-hidden>🕒</span>
                       {row.time}
                     </span>
                     {row.tag && (
-                      <span className="text-[10px] font-medium uppercase tracking-wide text-pink-500">
+                      <span className="text-xs font-bold uppercase tracking-wide text-pink-600">
                         {row.tag}
                       </span>
                     )}
