@@ -13,13 +13,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://quadrant-lmv-fm-26.vercel.app"),
+  metadataBase: new URL("https://voluntaris.lamamave.com"),
   title: "Quadrant FM 2026 · La Mama Ve",
   description: "Apunta't als torns de la festa major 💪",
   openGraph: {
     title: "Quadrant FM 2026 · La Mama Ve",
     description: "Apunta't als torns de la festa major 💪",
-    url: "https://quadrant-lmv-fm-26.vercel.app",
+    url: "https://voluntaris.lamamave.com",
     siteName: "La Mama Ve",
     locale: "ca_ES",
     type: "website",
