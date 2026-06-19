@@ -17,17 +17,17 @@ export function ShiftGrid({ title, slots, cols, myName, onClaim, onRelease, onIn
   const blocks = buildGrid(slots, cols);
 
   return (
-    <section className="mb-8 rounded-2xl border-2 border-pink-400 bg-white p-3 sm:p-4 shadow-sm">
+    <section className="mb-8 rounded-2xl p-3 sm:p-4 shadow-sm" style={{ backgroundColor: "#ffebf4" }}>
       {/* Nivell 1 — Activitat (super-card) */}
-      <h2 className="text-2xl font-extrabold uppercase tracking-wide text-pink-600 mb-4">
+      <h2 className="text-2xl font-extrabold uppercase tracking-wide mb-4" style={{ color: "#fa3c92" }}>
         {title}
       </h2>
 
       <div className="space-y-4">
         {blocks.map((block) => (
           /* Nivell 2 — Dia */
-          <div key={block.block} className="rounded-lg border border-pink-100 overflow-hidden bg-white">
-            <h3 className="text-sm font-bold text-pink-800 bg-pink-50 border-b border-pink-100 px-3 py-2">
+          <div key={block.block} className="rounded-lg overflow-hidden bg-white shadow-sm">
+            <h3 className="text-sm font-bold bg-white border-b px-3 py-2" style={{ color: "#3d001c", borderColor: "#ffebf4" }}>
               {block.block}
             </h3>
 
