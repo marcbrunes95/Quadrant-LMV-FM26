@@ -43,11 +43,8 @@ export function SlotCell({ slot, myName, onClaim, onRelease, onInfo }: Props) {
           ? `Plaça ${slot.id} · toca per alliberar${since ? ` (des de ${since})` : ""}`
           : `Plaça ${slot.id} · ${slot.taken_by}${sinceTxt}`
       }
-      className={`h-9 w-full rounded-md border px-1 leading-none overflow-hidden flex flex-col items-center justify-center ${
-        mine
-          ? "bg-pink-600 text-white border-pink-700"
-          : "bg-gray-200 text-gray-600 border-gray-300"
-      }`}
+      className="h-9 w-full rounded-md border border-black/10 px-1 leading-none overflow-hidden flex flex-col items-center justify-center text-white"
+      style={{ backgroundColor: mine ? "#3d001c" : "#fa3c92" }}
     >
       <span className="text-[9px] opacity-70">
         #{slot.id}
