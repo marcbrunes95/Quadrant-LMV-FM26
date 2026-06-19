@@ -17,9 +17,9 @@ export function ShiftGrid({ title, slots, cols, myName, onClaim, onRelease, onIn
   const blocks = buildGrid(slots, cols);
 
   return (
-    <section className="mb-8">
-      {/* Nivell 1 — Activitat */}
-      <h2 className="text-xl font-extrabold text-white bg-pink-600 rounded-lg px-3 py-2 mb-3 shadow-sm">
+    <section className="mb-8 rounded-2xl border-2 border-pink-400 bg-white p-3 sm:p-4 shadow-sm">
+      {/* Nivell 1 — Activitat (super-card) */}
+      <h2 className="text-2xl font-extrabold uppercase tracking-wide text-pink-600 mb-4">
         {title}
       </h2>
 

@@ -46,7 +46,7 @@ export default function Home() {
   const stats = computeStats(slots);
 
   return (
-    <main className="min-h-screen bg-pink-50">
+    <main className="min-h-screen bg-white">
       <header className="sticky top-0 z-10 bg-white/95 backdrop-blur border-b border-pink-200 shadow-sm">
         <div className="max-w-6xl mx-auto px-3 py-2 space-y-2">
           <div className="flex items-center justify-between gap-3">

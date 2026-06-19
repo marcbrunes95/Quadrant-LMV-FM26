@@ -4,11 +4,11 @@ export function StatsBar({ stats }: { stats: Stats }) {
   const pct = stats.total ? Math.round(((stats.total - stats.free) / stats.total) * 100) : 0;
   return (
     <div className="space-y-1.5">
-      <div className="flex items-baseline justify-between">
-        <span className="text-sm font-bold text-gray-800">
-          {stats.free} / {stats.total} places lliures
+      <div className="flex items-baseline justify-between gap-2">
+        <span className="text-xl font-extrabold text-gray-800">
+          {stats.free} / {stats.total} <span className="text-base font-bold">places lliures</span>
         </span>
-        <span className="text-xs text-gray-500">{pct}% cobert</span>
+        <span className="text-base font-bold text-pink-600">{pct}% cobert</span>
       </div>
       <div className="h-2 w-full rounded bg-gray-200 overflow-hidden">
         <div className="h-full bg-pink-600 transition-all" style={{ width: `${pct}%` }} />
