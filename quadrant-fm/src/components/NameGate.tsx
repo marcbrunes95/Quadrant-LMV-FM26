@@ -43,7 +43,7 @@ export function NameGate({ onEnter }: { onEnter: (name: string) => void }) {
               >
                 Política de privacitat
               </a>{" "}
-              de La Mama Ve i soc conscient que el meu nom quedarà visible
+              de La Mama Ve i sóc conscient que el meu nom quedarà visible
               públicament al quadrant de voluntaris.
             </span>
           </label>
