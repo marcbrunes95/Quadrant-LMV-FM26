@@ -50,8 +50,8 @@ export default function Admin() {
   function exportCsv() {
     if (!events) return;
     const rows = [
-      ["data_hora", "accio", "placa", "persona"],
-      ...events.map((e) => [e.created_at, e.action, String(e.slot_id), e.person]),
+      ["data_hora", "accio", "placa", "persona", "id"],
+      ...events.map((e) => [e.created_at, e.action, String(e.slot_id), e.person, e.person_id ?? ""]),
     ];
     const csv = rows.map((r) => r.map((c) => `"${c.replace(/"/g, '""')}"`).join(",")).join("\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
@@ -66,7 +66,11 @@ export default function Admin() {
   const shown = events?.filter((e) => {
     if (!filter.trim()) return true;
     const f = filter.toLowerCase();
-    return e.person.toLowerCase().includes(f) || String(e.slot_id).includes(f);
+    return (
+      e.person.toLowerCase().includes(f) ||
+      String(e.slot_id).includes(f) ||
+      (e.person_id ?? "").toLowerCase().includes(f)
+    );
   });
 
   return (
@@ -121,6 +125,7 @@ export default function Admin() {
                       <th className="text-left px-3 py-2">Acció</th>
                       <th className="text-left px-3 py-2">Plaça</th>
                       <th className="text-left px-3 py-2">Persona</th>
+                      <th className="text-left px-3 py-2">ID</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -134,6 +139,7 @@ export default function Admin() {
                         </td>
                         <td className="px-3 py-1.5">#{e.slot_id}</td>
                         <td className="px-3 py-1.5 font-medium">{e.person}</td>
+                        <td className="px-3 py-1.5 text-gray-500">{e.person_id ?? "—"}</td>
                       </tr>
                     ))}
                   </tbody>

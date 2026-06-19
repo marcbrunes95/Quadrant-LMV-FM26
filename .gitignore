@@ -11,6 +11,9 @@ _x/
 parse.js
 seed.js
 
+# private roster data (DNI/NIE) — never commit
+quadrant-fm/supabase/_private/
+
 # OS
 .DS_Store
 Thumbs.db

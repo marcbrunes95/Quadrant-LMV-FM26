@@ -2,15 +2,15 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useSlots } from "@/hooks/useSlots";
 import { computeStats, FM_COLS, FRIGO_COLS } from "@/lib/grid";
-import { NameGate } from "@/components/NameGate";
+import { NameGate, type User } from "@/components/NameGate";
 import { Legend } from "@/components/Legend";
 import { StatsBar } from "@/components/StatsBar";
 import { ShiftGrid } from "@/components/ShiftGrid";
 
-const NAME_KEY = "quadrant-fm-name";
+const USER_KEY = "quadrant-fm-user";
 
 export default function Home() {
-  const [name, setName] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [ready, setReady] = useState(false);
   const [info, setInfo] = useState<string | null>(null);
   const infoTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -23,18 +23,23 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    setName(localStorage.getItem(NAME_KEY));
+    try {
+      const raw = localStorage.getItem(USER_KEY);
+      if (raw) setUser(JSON.parse(raw) as User);
+    } catch { /* ignore corrupt value */ }
     setReady(true);
   }, []);
 
   if (!ready) return null;
-  if (!name) {
+  if (!user) {
     return (
       <NameGate
-        onEnter={(n) => { localStorage.setItem(NAME_KEY, n); setName(n); }}
+        onEnter={(u) => { localStorage.setItem(USER_KEY, JSON.stringify(u)); setUser(u); }}
       />
     );
   }
+
+  const name = user.name;
 
   const fm = slots.filter((s) => s.table === "FM");
   const frigo = slots.filter((s) => s.table === "FRIGO");
@@ -50,10 +55,10 @@ export default function Home() {
             <div className="text-xs text-gray-600">
               Hola, <strong className="text-pink-700">{name}</strong>{" "}
               <button
-                onClick={() => { localStorage.removeItem(NAME_KEY); setName(null); }}
+                onClick={() => { localStorage.removeItem(USER_KEY); setUser(null); }}
                 className="underline text-gray-400 ml-1"
               >
-                canviar
+                surt
               </button>
             </div>
           </div>
@@ -80,9 +85,9 @@ export default function Home() {
         ) : (
           <>
             <ShiftGrid title="Prèvia i Festa Major" slots={fm} cols={FM_COLS}
-              myName={name} onClaim={(id) => claim(id, name)} onRelease={(id) => release(id, name)} onInfo={showInfo} />
+              myName={name} onClaim={(id) => claim(id, name, user.id)} onRelease={(id) => release(id, name, user.id)} onInfo={showInfo} />
             <ShiftGrid title="Frigofiesta" slots={frigo} cols={FRIGO_COLS}
-              myName={name} onClaim={(id) => claim(id, name)} onRelease={(id) => release(id, name)} onInfo={showInfo} />
+              myName={name} onClaim={(id) => claim(id, name, user.id)} onRelease={(id) => release(id, name, user.id)} onInfo={showInfo} />
           </>
         )}
       </div>

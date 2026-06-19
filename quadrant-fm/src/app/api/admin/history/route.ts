@@ -13,7 +13,7 @@ export async function POST(req: Request) {
   );
   const { data, error } = await admin
     .from("slot_events")
-    .select("id, slot_id, person, action, created_at")
+    .select("id, slot_id, person, person_id, action, created_at")
     .order("created_at", { ascending: false })
     .limit(1000);
   if (error) return NextResponse.json({ ok: false, error: error.message }, { status: 500 });

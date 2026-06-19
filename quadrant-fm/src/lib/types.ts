@@ -30,6 +30,7 @@ export interface SlotEvent {
   id: number;
   slot_id: number;
   person: string;
+  person_id: string | null;
   action: "claim" | "release";
   created_at: string;
 }
