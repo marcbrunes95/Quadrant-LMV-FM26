@@ -46,7 +46,7 @@ export function ShiftGrid({ title, slots, cols, myName, onClaim, onRelease, onIn
                       </span>
                     )}
                   </div>
-                  <div className="flex flex-wrap gap-1">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-1">
                     {row.cells
                       .filter((c): c is Slot => c !== null)
                       .map((cell) => (
