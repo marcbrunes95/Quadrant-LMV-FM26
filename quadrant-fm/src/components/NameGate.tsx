@@ -47,14 +47,13 @@ export function NameGate({ onEnter }: { onEnter: (user: User) => void }) {
       <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-sm text-center">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/lamamave.png" alt="La Mama Ve" className="mx-auto mb-6 w-48" />
-        <h1 className="text-xl font-bold mb-1 text-gray-800">Quadrant Festa Major 2026</h1>
-        <p className="text-sm text-gray-500 mb-4">Entra amb el teu DNI/NIE (sense lletra final si és DNI)</p>
+        <h1 className="text-xl font-bold mb-4 text-gray-800">Quadrant Festa Major 2026</h1>
         <form onSubmit={submit}>
           <input
             autoFocus
             value={id}
             onChange={(e) => setId(e.target.value)}
-            placeholder="El teu DNI / NIE"
+            placeholder="El teu DNI / NIE sense lletra"
             autoComplete="off"
             className="w-full border border-gray-300 rounded-lg px-4 py-3 mb-3 text-center tracking-wide"
           />
