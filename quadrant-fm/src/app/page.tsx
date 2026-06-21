@@ -41,6 +41,13 @@ export default function Home() {
 
   const name = user.name;
 
+  const handleClaim = (slotId: number) => {
+    claim(slotId, name, user.id).then((status) => {
+      if (status === "dup") showInfo("Ja tens una plaça en aquesta franja horària");
+      else if (status === "taken") showInfo("Aquesta plaça l'acaba d'agafar algú altre");
+    });
+  };
+
   const fm = slots.filter((s) => s.table === "FM");
   const frigo = slots.filter((s) => s.table === "FRIGO");
   const stats = computeStats(slots);
@@ -85,9 +92,9 @@ export default function Home() {
         ) : (
           <>
             <ShiftGrid title="Prèvia i Festa Major" slots={fm} cols={FM_COLS}
-              myName={name} onClaim={(id) => claim(id, name, user.id)} onRelease={(id) => release(id, name, user.id)} onInfo={showInfo} />
+              myName={name} onClaim={handleClaim} onRelease={(id) => release(id, name, user.id)} onInfo={showInfo} />
             <ShiftGrid title="Frigofiesta" slots={frigo} cols={FRIGO_COLS}
-              myName={name} onClaim={(id) => claim(id, name, user.id)} onRelease={(id) => release(id, name, user.id)} onInfo={showInfo} />
+              myName={name} onClaim={handleClaim} onRelease={(id) => release(id, name, user.id)} onInfo={showInfo} />
           </>
         )}
       </div>

@@ -47,12 +47,18 @@ export function useSlots() {
     return () => { supabase.removeChannel(channel); };
   }, [load]);
 
-  const claim = useCallback(async (id: number, person: string, externalId: string): Promise<boolean> => {
+  // Returns: "ok" | "dup" (already has one in this franja) | "taken" (lost race) | "error"
+  const claim = useCallback(async (id: number, person: string, externalId: string): Promise<string> => {
     const { data, error } = await supabase.rpc("claim_slot", { p_id: id, p_person: person, p_external_id: externalId });
-    if (error) { setError(error.message); return false; }
-    if (data === true) setTaken((prev) => ({ ...prev, [id]: { by: person, at: new Date().toISOString() } }));
-    else await load(); // lost the race; refresh truth
-    return data === true;
+    if (error) { setError(error.message); return "error"; }
+    const ok = data === true || data === "ok"; // tolerate old (boolean) and new (text) RPC
+    if (ok) {
+      setTaken((prev) => ({ ...prev, [id]: { by: person, at: new Date().toISOString() } }));
+      return "ok";
+    }
+    if (data === "dup") return "dup";
+    await load(); // lost the race; refresh truth
+    return "taken";
   }, [load]);
 
   const release = useCallback(async (id: number, person: string, externalId: string): Promise<boolean> => {

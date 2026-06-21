@@ -16,5 +16,6 @@ export async function POST(req: Request) {
     .update({ taken_by: null, taken_at: null })
     .not("taken_by", "is", null);
   if (error) return NextResponse.json({ ok: false, error: error.message }, { status: 500 });
+  await admin.from("slot_owner").delete().gte("slot_id", 0);
   return NextResponse.json({ ok: true });
 }

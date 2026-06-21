@@ -16,6 +16,7 @@ export async function POST(req: Request) {
     .update({ taken_by: null, taken_at: null })
     .eq("id", id);
   if (error) return NextResponse.json({ ok: false, error: error.message }, { status: 500 });
+  await admin.from("slot_owner").delete().eq("slot_id", id);
   await admin
     .from("slot_events")
     .insert({ slot_id: id, person: "(admin)", action: "release" });
