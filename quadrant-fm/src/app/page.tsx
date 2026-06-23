@@ -7,6 +7,7 @@ import { Legend } from "@/components/Legend";
 import { StatsBar } from "@/components/StatsBar";
 import { ShiftGrid } from "@/components/ShiftGrid";
 import { MedalBadge } from "@/components/MedalBadge";
+import { Confetti } from "@/components/Confetti";
 
 const USER_KEY = "quadrant-fm-user";
 
@@ -37,11 +38,13 @@ export default function Home() {
   const prevCount = useRef<number | null>(null);
   const baselined = useRef(false);
   const [celebrating, setCelebrating] = useState(false);
+  const [confetti, setConfetti] = useState(false);
 
   useEffect(() => {
     if (loading || !myName) return;
     if (!baselined.current) { prevCount.current = myCount; baselined.current = true; return; }
-    if (prevCount.current !== null && myCount > prevCount.current) {
+    const prev = prevCount.current;
+    if (prev !== null && myCount > prev) {
       const msg =
         myCount >= 3 ? `🥇 OR! Ets el millor/a amb ${myCount} torns! 🏆` :
         myCount === 2 ? "🥈 Nivell Plata! Ja portes 2 torns 🎉" :
@@ -49,6 +52,11 @@ export default function Home() {
       showInfo(msg);
       setCelebrating(true);
       setTimeout(() => setCelebrating(false), 2600);
+      // Serpentines on reaching GOLD (3 torns)
+      if (prev < 3 && myCount >= 3) {
+        setConfetti(true);
+        setTimeout(() => setConfetti(false), 4000);
+      }
     }
     prevCount.current = myCount;
   }, [loading, myName, myCount, showInfo]);
@@ -128,6 +136,8 @@ export default function Home() {
           {info}
         </div>
       )}
+
+      {confetti && <Confetti />}
     </main>
   );
 }
