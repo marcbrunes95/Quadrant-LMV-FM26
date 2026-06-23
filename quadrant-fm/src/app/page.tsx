@@ -45,15 +45,19 @@ export default function Home() {
     if (!baselined.current) { prevCount.current = myCount; baselined.current = true; return; }
     const prev = prevCount.current;
     if (prev !== null && myCount > prev) {
+      const reachedOr = prev < 5 && myCount >= 5;
+      const reachedPlata = prev < 3 && myCount >= 3;
+      const reachedBronze = prev < 1 && myCount >= 1;
       const msg =
-        myCount >= 3 ? `🥇 OR! Ets el millor/a amb ${myCount} torns! 🏆` :
-        myCount === 2 ? "🥈 Nivell Plata! Ja portes 2 torns 🎉" :
-        "🥉 Nivell Bronze! Primer torn, gràcies! 🎉";
+        reachedOr ? "Ja ets OR! 🥇 Gràcies per col·laborar amb La Mama Ve fins a 5 vegades durant aquesta FM!" :
+        reachedPlata ? "Ja ets PLATA! 🥈 Gràcies per col·laborar amb La Mama Ve fins a 3 vegades durant aquesta FM!" :
+        reachedBronze ? "Ja ets BRONZE! 🥉 Gràcies per col·laborar amb La Mama Ve durant aquesta FM!" :
+        `Genial! Ja portes ${myCount} torns 🎉`;
       showInfo(msg);
       setCelebrating(true);
       setTimeout(() => setCelebrating(false), 2600);
-      // Serpentines on reaching GOLD (3 torns)
-      if (prev < 3 && myCount >= 3) {
+      // Serpentines on reaching PLATA (3) or OR (5)
+      if (reachedPlata || reachedOr) {
         setConfetti(true);
         setTimeout(() => setConfetti(false), 4000);
       }

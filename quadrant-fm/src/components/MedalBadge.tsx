@@ -10,9 +10,9 @@ const SILVER: Tier = { emoji: "🥈", label: "Plata", bg: "#e9ecef", fg: "#6b728
 const GOLD: Tier = { emoji: "🥇", label: "Or", bg: "#fdf3c4", fg: "#a37e00" };
 
 export function tierFor(count: number): Tier | null {
-  if (count >= 3) return GOLD;
-  if (count === 2) return SILVER;
-  if (count === 1) return BRONZE;
+  if (count >= 5) return GOLD;
+  if (count >= 3) return SILVER;
+  if (count >= 1) return BRONZE;
   return null;
 }
 
