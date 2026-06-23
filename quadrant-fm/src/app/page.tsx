@@ -6,6 +6,7 @@ import { NameGate, type User } from "@/components/NameGate";
 import { Legend } from "@/components/Legend";
 import { StatsBar } from "@/components/StatsBar";
 import { ShiftGrid } from "@/components/ShiftGrid";
+import { MedalBadge } from "@/components/MedalBadge";
 
 const USER_KEY = "quadrant-fm-user";
 
@@ -29,6 +30,28 @@ export default function Home() {
     } catch { /* ignore corrupt value */ }
     setReady(true);
   }, []);
+
+  // How many slots the current person holds (by name, same as "mine" on cells).
+  const myName = user?.name ?? null;
+  const myCount = myName ? slots.filter((s) => s.taken_by === myName).length : 0;
+  const prevCount = useRef<number | null>(null);
+  const baselined = useRef(false);
+  const [celebrating, setCelebrating] = useState(false);
+
+  useEffect(() => {
+    if (loading || !myName) return;
+    if (!baselined.current) { prevCount.current = myCount; baselined.current = true; return; }
+    if (prevCount.current !== null && myCount > prevCount.current) {
+      const msg =
+        myCount >= 3 ? `🥇 OR! Ets el millor/a amb ${myCount} torns! 🏆` :
+        myCount === 2 ? "🥈 Nivell Plata! Ja portes 2 torns 🎉" :
+        "🥉 Nivell Bronze! Primer torn, gràcies! 🎉";
+      showInfo(msg);
+      setCelebrating(true);
+      setTimeout(() => setCelebrating(false), 2600);
+    }
+    prevCount.current = myCount;
+  }, [loading, myName, myCount, showInfo]);
 
   if (!ready) return null;
   if (!user) {
@@ -59,11 +82,12 @@ export default function Home() {
           <div className="flex items-center justify-between gap-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/lamamave.png" alt="La Mama Ve" className="h-7" />
-            <div className="text-xs text-gray-600">
-              Hola, <strong className="text-pink-700">{name}</strong>{" "}
+            <div className="flex items-center gap-2 text-xs text-gray-600">
+              <span>Hola, <strong className="text-pink-700">{name}</strong></span>
+              <MedalBadge count={myCount} celebrating={celebrating} />
               <button
                 onClick={() => { localStorage.removeItem(USER_KEY); setUser(null); }}
-                className="underline text-gray-400 ml-1"
+                className="underline text-gray-400"
               >
                 surt
               </button>
