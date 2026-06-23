@@ -136,7 +136,7 @@ export default function Home() {
       </div>
 
       {info && (
-        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-20 max-w-[90vw] rounded-full bg-gray-900 text-white text-sm px-4 py-2 shadow-lg">
+        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-20 w-[min(92vw,28rem)] rounded-2xl bg-gray-900 text-white text-sm text-center leading-snug px-4 py-3 shadow-lg">
           {info}
         </div>
       )}
