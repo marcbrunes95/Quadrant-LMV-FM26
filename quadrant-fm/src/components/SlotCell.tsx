@@ -5,15 +5,15 @@ import { formatWhen } from "@/lib/format";
 
 interface Props {
   slot: Slot;
-  myName: string;
+  /** Whether this slot belongs to the current user — resolved by ID (DNI), never by name. */
+  mine: boolean;
   onClaim: (id: number) => void;
   onRelease: (id: number) => void;
   onInfo?: (msg: string) => void;
 }
 
-export function SlotCell({ slot, myName, onClaim, onRelease, onInfo }: Props) {
+export function SlotCell({ slot, mine, onClaim, onRelease, onInfo }: Props) {
   const free = slot.taken_by === null;
-  const mine = slot.taken_by === myName;
 
   if (free) {
     return (

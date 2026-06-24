@@ -2,6 +2,7 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useSlots } from "@/hooks/useSlots";
 import { computeStats, FM_COLS, FRIGO_COLS } from "@/lib/grid";
+import type { Slot } from "@/lib/types";
 import { NameGate, type User } from "@/components/NameGate";
 import { Legend } from "@/components/Legend";
 import { StatsBar } from "@/components/StatsBar";
@@ -16,7 +17,7 @@ export default function Home() {
   const [ready, setReady] = useState(false);
   const [info, setInfo] = useState<string | null>(null);
   const infoTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const { slots, loading, error, claim, release } = useSlots();
+  const { slots, loading, error, claim, release, mineIds, mineReady } = useSlots(user?.id ?? null);
 
   const showInfo = useCallback((msg: string) => {
     setInfo(msg);
@@ -32,9 +33,11 @@ export default function Home() {
     setReady(true);
   }, []);
 
-  // How many slots the current person holds (by name, same as "mine" on cells).
+  // How many slots the current person holds — by ID (DNI) when available.
   const myName = user?.name ?? null;
-  const myCount = myName ? slots.filter((s) => s.taken_by === myName).length : 0;
+  const myCount = mineReady
+    ? mineIds.size
+    : (myName ? slots.filter((s) => s.taken_by === myName).length : 0);
   const prevCount = useRef<number | null>(null);
   const baselined = useRef(false);
   const [celebrating, setCelebrating] = useState(false);
@@ -75,6 +78,11 @@ export default function Home() {
   }
 
   const name = user.name;
+
+  // Ownership strictly by ID (DNI); name match is only a temporary fallback
+  // until the my_slots RPC is deployed.
+  const isMine = (slot: Slot) =>
+    mineReady ? mineIds.has(slot.id) : slot.taken_by === name;
 
   const handleClaim = (slotId: number) => {
     claim(slotId, name, user.id).then((status) => {
@@ -128,9 +136,9 @@ export default function Home() {
         ) : (
           <>
             <ShiftGrid title="Prèvia i Festa Major" slots={fm} cols={FM_COLS}
-              myName={name} onClaim={handleClaim} onRelease={(id) => release(id, name, user.id)} onInfo={showInfo} />
+              isMine={isMine} onClaim={handleClaim} onRelease={(id) => release(id, name, user.id)} onInfo={showInfo} />
             <ShiftGrid title="Frigofiesta" slots={frigo} cols={FRIGO_COLS}
-              myName={name} onClaim={handleClaim} onRelease={(id) => release(id, name, user.id)} onInfo={showInfo} />
+              isMine={isMine} onClaim={handleClaim} onRelease={(id) => release(id, name, user.id)} onInfo={showInfo} />
           </>
         )}
       </div>

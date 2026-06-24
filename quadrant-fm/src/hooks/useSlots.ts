@@ -14,10 +14,13 @@ function merge(state: Record<number, TakenInfo>): Slot[] {
   }));
 }
 
-export function useSlots() {
+export function useSlots(externalId: string | null) {
   const [taken, setTaken] = useState<Record<number, TakenInfo>>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  // Which slot ids belong to ME — resolved by ID (DNI), never by name.
+  const [mineIds, setMineIds] = useState<Set<number>>(new Set());
+  const [mineReady, setMineReady] = useState(false);
 
   const load = useCallback(async () => {
     const { data, error } = await supabase
@@ -30,6 +33,18 @@ export function useSlots() {
     setTaken(map);
     setLoading(false);
   }, []);
+
+  const loadMine = useCallback(async () => {
+    if (!externalId) { setMineIds(new Set()); setMineReady(true); return; }
+    const { data, error } = await supabase.rpc("my_slots", { p_external_id: externalId });
+    if (error || !Array.isArray(data)) {
+      // RPC not deployed yet → leave unready so the UI can fall back temporarily.
+      setMineReady(false);
+      return;
+    }
+    setMineIds(new Set(data as number[]));
+    setMineReady(true);
+  }, [externalId]);
 
   useEffect(() => {
     load();
@@ -47,13 +62,16 @@ export function useSlots() {
     return () => { supabase.removeChannel(channel); };
   }, [load]);
 
+  useEffect(() => { loadMine(); }, [loadMine]);
+
   // Returns: "ok" | "dup" (already has one in this franja) | "taken" (lost race) | "error"
-  const claim = useCallback(async (id: number, person: string, externalId: string): Promise<string> => {
-    const { data, error } = await supabase.rpc("claim_slot", { p_id: id, p_person: person, p_external_id: externalId });
+  const claim = useCallback(async (id: number, person: string, extId: string): Promise<string> => {
+    const { data, error } = await supabase.rpc("claim_slot", { p_id: id, p_person: person, p_external_id: extId });
     if (error) { setError(error.message); return "error"; }
     const ok = data === true || data === "ok"; // tolerate old (boolean) and new (text) RPC
     if (ok) {
       setTaken((prev) => ({ ...prev, [id]: { by: person, at: new Date().toISOString() } }));
+      setMineIds((prev) => new Set(prev).add(id));
       return "ok";
     }
     if (data === "dup") return "dup";
@@ -61,12 +79,15 @@ export function useSlots() {
     return "taken";
   }, [load]);
 
-  const release = useCallback(async (id: number, person: string, externalId: string): Promise<boolean> => {
-    const { data, error } = await supabase.rpc("release_slot", { p_id: id, p_person: person, p_external_id: externalId });
+  const release = useCallback(async (id: number, person: string, extId: string): Promise<boolean> => {
+    const { data, error } = await supabase.rpc("release_slot", { p_id: id, p_person: person, p_external_id: extId });
     if (error) { setError(error.message); return false; }
-    if (data === true) setTaken((prev) => ({ ...prev, [id]: { by: null, at: null } }));
+    if (data === true) {
+      setTaken((prev) => ({ ...prev, [id]: { by: null, at: null } }));
+      setMineIds((prev) => { const next = new Set(prev); next.delete(id); return next; });
+    }
     return data === true;
   }, []);
 
-  return { slots: merge(taken), loading, error, claim, release };
+  return { slots: merge(taken), loading, error, claim, release, mineIds, mineReady };
 }

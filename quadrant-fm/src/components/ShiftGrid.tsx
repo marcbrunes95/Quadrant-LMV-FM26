@@ -7,13 +7,13 @@ interface Props {
   title: string;
   slots: Slot[];
   cols: string[];
-  myName: string;
+  isMine: (slot: Slot) => boolean;
   onClaim: (id: number) => void;
   onRelease: (id: number) => void;
   onInfo?: (msg: string) => void;
 }
 
-export function ShiftGrid({ title, slots, cols, myName, onClaim, onRelease, onInfo }: Props) {
+export function ShiftGrid({ title, slots, cols, isMine, onClaim, onRelease, onInfo }: Props) {
   const blocks = buildGrid(slots, cols);
 
   return (
@@ -53,7 +53,7 @@ export function ShiftGrid({ title, slots, cols, myName, onClaim, onRelease, onIn
                         <SlotCell
                           key={cell.id}
                           slot={cell}
-                          myName={myName}
+                          mine={isMine(cell)}
                           onClaim={onClaim}
                           onRelease={onRelease}
                           onInfo={onInfo}
