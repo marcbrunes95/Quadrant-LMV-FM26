@@ -36,6 +36,14 @@ describe("SlotCell", () => {
     expect(onRelease).toHaveBeenCalledWith(5);
   });
 
+  it("mostra num (número visible) si existeix, però opera amb id", () => {
+    const onClaim = vi.fn();
+    render(<SlotCell slot={{ ...base, id: 213, num: 13 }} mine={false} onClaim={onClaim} onRelease={vi.fn()} />);
+    expect(screen.getByText("13")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button"));
+    expect(onClaim).toHaveBeenCalledWith(213);
+  });
+
   it("a namesake (same name, different ID) cannot release: mine=false", () => {
     const onRelease = vi.fn();
     render(
