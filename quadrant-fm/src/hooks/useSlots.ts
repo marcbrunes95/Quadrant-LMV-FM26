@@ -1,20 +1,20 @@
 "use client";
 import { useEffect, useState, useCallback } from "react";
 import { supabase } from "@/lib/supabaseClient";
-import { SLOTS_META } from "@/lib/slots-data";
-import type { Slot, SlotState } from "@/lib/types";
+import { slotsForEvent } from "@/lib/slots-data";
+import type { EventId, Slot, SlotState } from "@/lib/types";
 
 type TakenInfo = { by: string | null; at: string | null };
 
-function merge(state: Record<number, TakenInfo>): Slot[] {
-  return SLOTS_META.map((m) => ({
+function merge(state: Record<number, TakenInfo>, event: EventId): Slot[] {
+  return slotsForEvent(event).map((m) => ({
     ...m,
     taken_by: state[m.id]?.by ?? null,
     taken_at: state[m.id]?.at ?? null,
   }));
 }
 
-export function useSlots(externalId: string | null) {
+export function useSlots(externalId: string | null, event: EventId) {
   const [taken, setTaken] = useState<Record<number, TakenInfo>>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -89,5 +89,5 @@ export function useSlots(externalId: string | null) {
     return data === true;
   }, []);
 
-  return { slots: merge(taken), loading, error, claim, release, mineIds, mineReady };
+  return { slots: merge(taken, event), loading, error, claim, release, mineIds, mineReady };
 }
