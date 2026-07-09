@@ -139,7 +139,7 @@ export function EventPage({ config }: { config: EventConfig }) {
               <MedalBadge count={myCount} celebrating={celebrating} thresholds={t} />
               <button
                 onClick={() => { localStorage.removeItem(USER_KEY); setUser(null); }}
-                className="underline text-gray-400"
+                className="shrink-0 inline-flex items-center rounded-full bg-pink-600 text-white text-[11px] font-semibold px-2.5 py-1 hover:bg-pink-700"
               >
                 surt
               </button>
