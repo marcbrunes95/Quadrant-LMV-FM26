@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const CARDS = [
   {
-    href: "/gatzara", title: "Gatzara", desc: "16 i 17 de juliol", emoji: "🎪",
+    href: "/gatzara", title: "GATZARA SONORA", desc: "16 i 17 de juliol", emoji: "🎪",
     badge: "Actiu", badgeClass: "bg-green-100 text-green-700",
   },
   {
