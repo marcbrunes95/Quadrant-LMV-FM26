@@ -1,5 +1,12 @@
 export type SlotColor = "roig" | "vermell" | "verd" | "blanc";
-export type TableName = "FM" | "FRIGO";
+export type TableName = "FM" | "FRIGO" | "GATZARA_BARRA" | "GATZARA_CUINA";
+export type EventId = "fm" | "gatzara";
+
+export interface MedalThresholds {
+  bronze: number;
+  plata: number;
+  or: number;
+}
 
 /** Static metadata seeded once. */
 export interface SlotMeta {
@@ -7,9 +14,14 @@ export interface SlotMeta {
   table: TableName;
   block: string;
   time: string;
-  tag: "Muntatge" | "Desmuntatge" | null;
+  /** Row label: Muntatge/Desmuntatge o rol de cuina (PATATERO, CUINA...). */
+  tag: string | null;
   color: SlotColor;
   col: string;
+  /** Esdeveniment; absent = "fm" (entrades FM originals, no es toquen). */
+  event?: EventId;
+  /** Número visible a la UI; absent = id (FM mostra id, Gatzara 1-51). */
+  num?: number;
 }
 
 /** Dynamic state from the DB. */
@@ -37,7 +49,7 @@ export interface SlotEvent {
 
 export interface GridRow {
   time: string;
-  tag: "Muntatge" | "Desmuntatge" | null;
+  tag: string | null;
   cells: (Slot | null)[]; // aligned to the table's column order
 }
 
