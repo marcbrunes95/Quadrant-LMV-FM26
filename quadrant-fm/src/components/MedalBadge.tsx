@@ -1,3 +1,5 @@
+import type { MedalThresholds } from "@/lib/types";
+
 interface Tier {
   emoji: string;
   label: string;
@@ -9,15 +11,18 @@ const BRONZE: Tier = { emoji: "🥉", label: "Bronze", bg: "#f6e3d0", fg: "#a05a
 const SILVER: Tier = { emoji: "🥈", label: "Plata", bg: "#e9ecef", fg: "#6b7280" };
 const GOLD: Tier = { emoji: "🥇", label: "Or", bg: "#fdf3c4", fg: "#a37e00" };
 
-export function tierFor(count: number): Tier | null {
-  if (count >= 5) return GOLD;
-  if (count >= 3) return SILVER;
-  if (count >= 1) return BRONZE;
+export const DEFAULT_THRESHOLDS: MedalThresholds = { bronze: 1, plata: 3, or: 5 };
+
+export function tierFor(count: number, t: MedalThresholds = DEFAULT_THRESHOLDS): Tier | null {
+  if (count >= t.or) return GOLD;
+  if (count >= t.plata) return SILVER;
+  if (count >= t.bronze) return BRONZE;
   return null;
 }
 
-export function MedalBadge({ count, celebrating }: { count: number; celebrating: boolean }) {
-  const tier = tierFor(count);
+export function MedalBadge({ count, celebrating, thresholds = DEFAULT_THRESHOLDS }:
+  { count: number; celebrating: boolean; thresholds?: MedalThresholds }) {
+  const tier = tierFor(count, thresholds);
   if (!tier) return null;
   return (
     <span
