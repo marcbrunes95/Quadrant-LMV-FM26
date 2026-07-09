@@ -26,13 +26,15 @@ describe("slots-data (Gatzara)", () => {
     expect(byNum.get(51)?.color).toBe("vermell");
   });
 
-  it("fusions del full: 45 = 18:00-22:00, 51 = 18:00-0:00, sense rols visibles", () => {
-    expect(byNum.get(45)).toMatchObject({ time: "18:00-22:00", tag: null, table: "GATZARA_CUINA" });
-    expect(byNum.get(51)).toMatchObject({ time: "18:00-0:00", tag: null });
+  it("fusions del full: 45 = 18:00-22:00, 51 = 18:00-0:00", () => {
+    expect(byNum.get(45)).toMatchObject({ time: "18:00-22:00", tag: "CUINA", table: "GATZARA_CUINA" });
+    expect(byNum.get(51)).toMatchObject({ time: "18:00-0:00", tag: "CAP DE PISTA" });
   });
 
-  it("cap slot Gatzara té rol com a tag: només Muntatge o res", () => {
-    expect(g.every((s) => s.tag === null || s.tag === "Muntatge")).toBe(true);
+  it("subtítols: Muntatge (1-12), BARRA (13-42), CUINA (43-50), CAP DE PISTA (51)", () => {
+    const tagFor = (n: number) =>
+      n <= 12 ? "Muntatge" : n <= 42 ? "BARRA" : n <= 50 ? "CUINA" : "CAP DE PISTA";
+    expect(g.every((s) => s.tag === tagFor(s.num ?? 0))).toBe(true);
   });
 
   it("muntatges: dijous 19:00 (1-6) i divendres 11:00 (7-12), blancs", () => {
