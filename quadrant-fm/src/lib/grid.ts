@@ -2,6 +2,7 @@ import type { Slot, GridBlock, GridRow, Stats, BlockStat } from "./types";
 
 export const FM_COLS = ["C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
 export const FRIGO_COLS = ["C", "D", "E", "F"];
+export const GATZARA_COLS = ["N", "O", "P", "Q", "R", "S"];
 
 export function buildGrid(slots: Slot[], cols: string[]): GridBlock[] {
   const blocks: GridBlock[] = [];
@@ -15,7 +16,8 @@ export function buildGrid(slots: Slot[], cols: string[]): GridBlock[] {
       blockIndex.set(s.block, block);
       blocks.push(block);
     }
-    const rowKey = `${s.block} ${s.time}`;
+    // El tag forma part de la clau: a Gatzara una mateixa hora té rols diferents.
+    const rowKey = `${s.block} ${s.time} ${s.tag ?? ""}`;
     let row = rowIndex.get(rowKey);
     if (!row) {
       row = { time: s.time, tag: s.tag, cells: cols.map(() => null) };

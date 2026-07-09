@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { buildGrid, computeStats, FM_COLS, FRIGO_COLS } from "../grid";
+import { buildGrid, computeStats, FM_COLS, FRIGO_COLS, GATZARA_COLS } from "../grid";
 import type { Slot } from "../types";
 
 function slot(p: Partial<Slot>): Slot {
@@ -39,6 +39,19 @@ describe("buildGrid", () => {
     const slots = [slot({ id: 1, block: "B1", time: "t1", col: "C", tag: "Muntatge" })];
     const grid = buildGrid(slots, FM_COLS);
     expect(grid[0].rows[0].tag).toBe("Muntatge");
+  });
+
+  it("separa files amb la mateixa hora però tag (rol) diferent", () => {
+    const slots: Slot[] = [
+      slot({ id: 243, block: "G", time: "20:00-22:00", tag: "PATATERO", col: "N" }),
+      slot({ id: 244, block: "G", time: "20:00-22:00", tag: "CUINA", col: "O" }),
+      slot({ id: 248, block: "G", time: "20:00-22:00", tag: "MUNTAR/SERVIR", col: "Q" }),
+      slot({ id: 249, block: "G", time: "20:00-22:00", tag: "MUNTAR/SERVIR", col: "R" }),
+    ];
+    const grid = buildGrid(slots, GATZARA_COLS);
+    expect(grid[0].rows).toHaveLength(3);
+    expect(grid[0].rows.map((r) => r.tag)).toEqual(["PATATERO", "CUINA", "MUNTAR/SERVIR"]);
+    expect(grid[0].rows[2].cells.filter(Boolean).map((c) => c!.id)).toEqual([248, 249]);
   });
 });
 
