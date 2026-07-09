@@ -16,17 +16,18 @@ const barra = [
   [31, DV, "23:30-1:00", null, ["verd", "vermell", "vermell", "roig", "vermell", "vermell"]],
   [37, DV, "1:00-2:30", null, ["verd", "vermell", "vermell", "roig", "vermell", "vermell"]],
 ];
-// [num, time, tag(rol), col, color] — ordre = ordre de visualització
+// [num, time, tag, col, color] — ordre = ordre de visualització.
+// Els rols (PATATERO, CUINA...) NO es mostren: tag null (només es manté Muntatge).
 const cuina = [
-  [46, "18:00-20:00", "MUNTAR/SERVIR", "Q", "verd"],
-  [47, "18:00-20:00", "MUNTAR/SERVIR", "R", "verd"],
-  [45, "18:00-22:00", "CAP CUINA", "P", "roig"],
-  [51, "18:00-0:00", "CAP PISTA", "S", "vermell"],
-  [43, "20:00-22:00", "PATATERO", "N", "verd"],
-  [44, "20:00-22:00", "CUINA", "O", "vermell"],
-  [48, "20:00-22:00", "MUNTAR/SERVIR", "Q", "vermell"],
-  [49, "20:00-22:00", "MUNTAR/SERVIR", "R", "vermell"],
-  [50, "22:00-0:00", "PATATERO", "N", "verd"],
+  [46, "18:00-20:00", null, "Q", "verd"],
+  [47, "18:00-20:00", null, "R", "verd"],
+  [45, "18:00-22:00", null, "P", "roig"],
+  [51, "18:00-0:00", null, "S", "vermell"],
+  [43, "20:00-22:00", null, "N", "verd"],
+  [44, "20:00-22:00", null, "O", "vermell"],
+  [48, "20:00-22:00", null, "Q", "vermell"],
+  [49, "20:00-22:00", null, "R", "vermell"],
+  [50, "22:00-0:00", null, "N", "verd"],
 ];
 
 const entries = [];

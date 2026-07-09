@@ -3,7 +3,7 @@ import type { EventId, MedalThresholds, TableName } from "./types";
 
 export interface EventGrid {
   title: string;
-  table: TableName;
+  tables: TableName[];
   cols: string[];
 }
 
@@ -21,8 +21,8 @@ export const FM_EVENT: EventConfig = {
   name: "FM",
   medal: { bronze: 1, plata: 3, or: 5 },
   grids: [
-    { title: "Prèvia i Festa Major", table: "FM", cols: FM_COLS },
-    { title: "Frigofiesta", table: "FRIGO", cols: FRIGO_COLS },
+    { title: "Prèvia i Festa Major", tables: ["FM"], cols: FM_COLS },
+    { title: "Frigofiesta", tables: ["FRIGO"], cols: FRIGO_COLS },
   ],
   programPdf: "/Programa_Festa_Major_2026.pdf",
 };
@@ -32,7 +32,6 @@ export const GATZARA_EVENT: EventConfig = {
   name: "Gatzara",
   medal: { bronze: 1, plata: 2, or: 3 },
   grids: [
-    { title: "Barra", table: "GATZARA_BARRA", cols: GATZARA_COLS },
-    { title: "Cuina i pista", table: "GATZARA_CUINA", cols: GATZARA_COLS },
+    { title: "Gatzara Sonora", tables: ["GATZARA_BARRA", "GATZARA_CUINA"], cols: GATZARA_COLS },
   ],
 };

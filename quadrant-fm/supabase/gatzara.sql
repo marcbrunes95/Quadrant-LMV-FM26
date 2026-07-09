@@ -42,13 +42,13 @@ insert into public.slots (id, table_name, block, time_label, tag, color, col_pos
 (240, 'GATZARA_BARRA', 'Gatzara divendres 17/07', '1:00-2:30', null, 'roig', 'Q'),
 (241, 'GATZARA_BARRA', 'Gatzara divendres 17/07', '1:00-2:30', null, 'vermell', 'R'),
 (242, 'GATZARA_BARRA', 'Gatzara divendres 17/07', '1:00-2:30', null, 'vermell', 'S'),
-(246, 'GATZARA_CUINA', 'Gatzara divendres 17/07', '18:00-20:00', 'MUNTAR/SERVIR', 'verd', 'Q'),
-(247, 'GATZARA_CUINA', 'Gatzara divendres 17/07', '18:00-20:00', 'MUNTAR/SERVIR', 'verd', 'R'),
-(245, 'GATZARA_CUINA', 'Gatzara divendres 17/07', '18:00-22:00', 'CAP CUINA', 'roig', 'P'),
-(251, 'GATZARA_CUINA', 'Gatzara divendres 17/07', '18:00-0:00', 'CAP PISTA', 'vermell', 'S'),
-(243, 'GATZARA_CUINA', 'Gatzara divendres 17/07', '20:00-22:00', 'PATATERO', 'verd', 'N'),
-(244, 'GATZARA_CUINA', 'Gatzara divendres 17/07', '20:00-22:00', 'CUINA', 'vermell', 'O'),
-(248, 'GATZARA_CUINA', 'Gatzara divendres 17/07', '20:00-22:00', 'MUNTAR/SERVIR', 'vermell', 'Q'),
-(249, 'GATZARA_CUINA', 'Gatzara divendres 17/07', '20:00-22:00', 'MUNTAR/SERVIR', 'vermell', 'R'),
-(250, 'GATZARA_CUINA', 'Gatzara divendres 17/07', '22:00-0:00', 'PATATERO', 'verd', 'N')
+(246, 'GATZARA_CUINA', 'Gatzara divendres 17/07', '18:00-20:00', null, 'verd', 'Q'),
+(247, 'GATZARA_CUINA', 'Gatzara divendres 17/07', '18:00-20:00', null, 'verd', 'R'),
+(245, 'GATZARA_CUINA', 'Gatzara divendres 17/07', '18:00-22:00', null, 'roig', 'P'),
+(251, 'GATZARA_CUINA', 'Gatzara divendres 17/07', '18:00-0:00', null, 'vermell', 'S'),
+(243, 'GATZARA_CUINA', 'Gatzara divendres 17/07', '20:00-22:00', null, 'verd', 'N'),
+(244, 'GATZARA_CUINA', 'Gatzara divendres 17/07', '20:00-22:00', null, 'vermell', 'O'),
+(248, 'GATZARA_CUINA', 'Gatzara divendres 17/07', '20:00-22:00', null, 'vermell', 'Q'),
+(249, 'GATZARA_CUINA', 'Gatzara divendres 17/07', '20:00-22:00', null, 'vermell', 'R'),
+(250, 'GATZARA_CUINA', 'Gatzara divendres 17/07', '22:00-0:00', null, 'verd', 'N')
 on conflict (id) do nothing;

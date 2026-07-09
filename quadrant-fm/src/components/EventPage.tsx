@@ -148,8 +148,8 @@ export function EventPage({ config }: { config: EventConfig }) {
         ) : (
           <>
             {config.grids.map((g) => (
-              <ShiftGrid key={g.table} title={g.title}
-                slots={slots.filter((s) => s.table === g.table)} cols={g.cols}
+              <ShiftGrid key={g.title} title={g.title}
+                slots={slots.filter((s) => g.tables.includes(s.table))} cols={g.cols}
                 isMine={isMine} onClaim={handleClaim}
                 onRelease={(id) => release(id, name, user.id)} onInfo={showInfo} />
             ))}

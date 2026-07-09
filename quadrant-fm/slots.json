@@ -1958,7 +1958,7 @@
   "table": "GATZARA_CUINA",
   "block": "Gatzara divendres 17/07",
   "time": "18:00-20:00",
-  "tag": "MUNTAR/SERVIR",
+  "tag": null,
   "color": "verd",
   "col": "Q"
  },
@@ -1969,7 +1969,7 @@
   "table": "GATZARA_CUINA",
   "block": "Gatzara divendres 17/07",
   "time": "18:00-20:00",
-  "tag": "MUNTAR/SERVIR",
+  "tag": null,
   "color": "verd",
   "col": "R"
  },
@@ -1980,7 +1980,7 @@
   "table": "GATZARA_CUINA",
   "block": "Gatzara divendres 17/07",
   "time": "18:00-22:00",
-  "tag": "CAP CUINA",
+  "tag": null,
   "color": "roig",
   "col": "P"
  },
@@ -1991,7 +1991,7 @@
   "table": "GATZARA_CUINA",
   "block": "Gatzara divendres 17/07",
   "time": "18:00-0:00",
-  "tag": "CAP PISTA",
+  "tag": null,
   "color": "vermell",
   "col": "S"
  },
@@ -2002,7 +2002,7 @@
   "table": "GATZARA_CUINA",
   "block": "Gatzara divendres 17/07",
   "time": "20:00-22:00",
-  "tag": "PATATERO",
+  "tag": null,
   "color": "verd",
   "col": "N"
  },
@@ -2013,7 +2013,7 @@
   "table": "GATZARA_CUINA",
   "block": "Gatzara divendres 17/07",
   "time": "20:00-22:00",
-  "tag": "CUINA",
+  "tag": null,
   "color": "vermell",
   "col": "O"
  },
@@ -2024,7 +2024,7 @@
   "table": "GATZARA_CUINA",
   "block": "Gatzara divendres 17/07",
   "time": "20:00-22:00",
-  "tag": "MUNTAR/SERVIR",
+  "tag": null,
   "color": "vermell",
   "col": "Q"
  },
@@ -2035,7 +2035,7 @@
   "table": "GATZARA_CUINA",
   "block": "Gatzara divendres 17/07",
   "time": "20:00-22:00",
-  "tag": "MUNTAR/SERVIR",
+  "tag": null,
   "color": "vermell",
   "col": "R"
  },
@@ -2046,7 +2046,7 @@
   "table": "GATZARA_CUINA",
   "block": "Gatzara divendres 17/07",
   "time": "22:00-0:00",
-  "tag": "PATATERO",
+  "tag": null,
   "color": "verd",
   "col": "N"
  }
