@@ -3,6 +3,7 @@ import { useEffect, useState, useRef, useCallback, useMemo } from "react";
 import Link from "next/link";
 import { useSlots } from "@/hooks/useSlots";
 import { computeStats } from "@/lib/grid";
+import { findOverlap } from "@/lib/franja";
 import type { EventConfig } from "@/lib/events";
 import type { Slot } from "@/lib/types";
 import { NameGate, type User } from "@/components/NameGate";
@@ -91,11 +92,29 @@ export function EventPage({ config }: { config: EventConfig }) {
   const isMine = (slot: Slot) =>
     mineReady ? mineIds.has(slot.id) : slot.taken_by === name;
 
+  const frozenMsg = `Aquesta ${config.name} ja ha acabat: el quadrant és només de consulta 🔒`;
+
   const handleClaim = (slotId: number) => {
+    if (config.frozen) { showInfo(frozenMsg); return; }
+    // Bloqueig per solapament d'hores dins del mateix dia (p. ex. cap de
+    // pista 18:00-0:00 coincideix amb barra 19:00-20:30).
+    const target = slots.find((s) => s.id === slotId);
+    if (target) {
+      const clash = findOverlap(target, slots.filter((s) => isMine(s)));
+      if (clash) {
+        showInfo(`No pots agafar-la: ja tens la plaça ${clash.num ?? clash.id} (${clash.time}), que coincideix amb aquesta franja`);
+        return;
+      }
+    }
     claim(slotId, name, user.id).then((status) => {
       if (status === "dup") showInfo("Ja tens una plaça en aquesta franja horària");
       else if (status === "taken") showInfo("Aquesta plaça l'acaba d'agafar algú altre");
     });
+  };
+
+  const handleRelease = (slotId: number) => {
+    if (config.frozen) { showInfo(frozenMsg); return; }
+    release(slotId, name, user.id);
   };
 
   const stats = computeStats(slots);
@@ -108,8 +127,11 @@ export function EventPage({ config }: { config: EventConfig }) {
             <div className="flex items-center gap-2">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/lamamave.png" alt="La Mama Ve" className="h-7" />
-              <Link href="/" className="text-xs text-gray-400 underline shrink-0">
-                ← esdeveniments
+              <Link
+                href="/"
+                className="shrink-0 inline-flex items-center gap-1 rounded-full bg-pink-600 text-white text-[11px] font-semibold px-2.5 py-1 hover:bg-pink-700"
+              >
+                <span aria-hidden>←</span> Esdeveniments
               </Link>
             </div>
             <div className="flex items-center gap-2 text-xs text-gray-600">
@@ -123,6 +145,11 @@ export function EventPage({ config }: { config: EventConfig }) {
               </button>
             </div>
           </div>
+          {config.frozen && (
+            <p className="text-[11px] font-bold text-gray-500 bg-gray-100 rounded-full px-2.5 py-1 inline-block">
+              🔒 Esdeveniment finalitzat — només consulta
+            </p>
+          )}
           <StatsBar stats={stats} />
           <div className="flex items-start justify-between gap-3">
             <Legend />
@@ -151,7 +178,7 @@ export function EventPage({ config }: { config: EventConfig }) {
               <ShiftGrid key={g.title} title={g.title}
                 slots={slots.filter((s) => g.tables.includes(s.table))} cols={g.cols}
                 isMine={isMine} onClaim={handleClaim}
-                onRelease={(id) => release(id, name, user.id)} onInfo={showInfo} />
+                onRelease={handleRelease} onInfo={showInfo} />
             ))}
           </>
         )}

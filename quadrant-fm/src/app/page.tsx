@@ -1,8 +1,14 @@
 import Link from "next/link";
 
 const CARDS = [
-  { href: "/fm", title: "FM", desc: "Prèvia · Festa Major · Frigofiesta", emoji: "🎉" },
-  { href: "/gatzara", title: "Gatzara", desc: "16 i 17 de juliol", emoji: "🎪" },
+  {
+    href: "/gatzara", title: "Gatzara", desc: "16 i 17 de juliol", emoji: "🎪",
+    badge: "Actiu", badgeClass: "bg-green-100 text-green-700",
+  },
+  {
+    href: "/fm", title: "FM", desc: "Prèvia · Festa Major · Frigofiesta", emoji: "🎉",
+    badge: "Finalitzat · només consulta", badgeClass: "bg-gray-100 text-gray-500",
+  },
 ];
 
 export default function Selector() {
@@ -16,7 +22,12 @@ export default function Selector() {
           {CARDS.map((c) => (
             <Link key={c.href} href={c.href}
               className="block bg-white rounded-2xl shadow-xl p-6 text-left hover:scale-[1.02] transition">
-              <span className="text-3xl" aria-hidden>{c.emoji}</span>
+              <div className="flex items-center justify-between">
+                <span className="text-3xl" aria-hidden>{c.emoji}</span>
+                <span className={`text-[11px] font-bold rounded-full px-2.5 py-1 ${c.badgeClass}`}>
+                  {c.badge}
+                </span>
+              </div>
               <span className="block text-2xl font-extrabold mt-1" style={{ color: "#fa3c92" }}>{c.title}</span>
               <span className="block text-sm text-gray-500 mt-0.5">{c.desc}</span>
             </Link>

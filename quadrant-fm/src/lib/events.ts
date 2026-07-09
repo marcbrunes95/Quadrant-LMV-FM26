@@ -14,6 +14,8 @@ export interface EventConfig {
   medal: MedalThresholds;
   grids: EventGrid[];
   programPdf?: string;
+  /** Esdeveniment acabat: es pot consultar però no tocar res. */
+  frozen?: boolean;
 }
 
 export const FM_EVENT: EventConfig = {
@@ -25,6 +27,7 @@ export const FM_EVENT: EventConfig = {
     { title: "Frigofiesta", tables: ["FRIGO"], cols: FRIGO_COLS },
   ],
   programPdf: "/Programa_Festa_Major_2026.pdf",
+  frozen: true,
 };
 
 export const GATZARA_EVENT: EventConfig = {
