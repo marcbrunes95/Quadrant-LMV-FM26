@@ -6,7 +6,7 @@ const CARDS = [
     badge: "Actiu", badgeClass: "bg-green-100 text-green-700",
   },
   {
-    href: "/fm", title: "FM", desc: "Prèvia · Festa Major · Frigofiesta", emoji: "🎉",
+    href: "/fm", title: "FESTA MAJOR", desc: "Prèvia · Festa Major · Frigofiesta", emoji: "🎉",
     badge: "Finalitzat · només consulta", badgeClass: "bg-gray-100 text-gray-500",
   },
 ];
