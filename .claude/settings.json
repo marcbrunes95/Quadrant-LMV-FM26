@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(npm test*)",
+      "Bash(npx tsc *)",
+      "Bash(node scripts/*)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ],
+    "ask": [
+      "Bash(git push*)",
+      "Bash(node scripts/seed-gatzara.mjs)"
+    ],
+    "deny": [
+      "Bash(git push --force*)",
+      "Read(quadrant-fm/.env.local)",
+      "Read(quadrant-fm/supabase/_private/**)"
+    ]
+  }
+}
