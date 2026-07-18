@@ -37,4 +37,5 @@ export const GATZARA_EVENT: EventConfig = {
   grids: [
     { title: "Gatzara Sonora", tables: ["GATZARA_BARRA", "GATZARA_CUINA"], cols: GATZARA_COLS },
   ],
+  frozen: true,
 };

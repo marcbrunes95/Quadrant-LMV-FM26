@@ -3,7 +3,7 @@ import Link from "next/link";
 const CARDS = [
   {
     href: "/gatzara", title: "GATZARA SONORA", desc: "16 i 17 de juliol", emoji: "🎪",
-    badge: "Actiu", badgeClass: "bg-green-100 text-green-700",
+    badge: "Finalitzat · només consulta", badgeClass: "bg-gray-100 text-gray-500",
   },
   {
     href: "/fm", title: "FESTA MAJOR", desc: "Prèvia · Festa Major · Frigofiesta", emoji: "🎉",
