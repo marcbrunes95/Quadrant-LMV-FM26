@@ -6,6 +6,10 @@ node_modules/
 .env.*
 !.env.example
 
+# Claude Code local settings (personal overrides)
+.claude/settings.local.json
+**/.claude/settings.local.json
+
 # scratch / extraction artifacts
 _x/
 parse.js
