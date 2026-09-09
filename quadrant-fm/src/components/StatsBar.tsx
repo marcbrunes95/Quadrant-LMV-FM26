@@ -13,16 +13,19 @@ export function StatsBar({ stats }: { stats: Stats }) {
       <div className="h-2 w-full rounded bg-gray-200 overflow-hidden">
         <div className="h-full bg-pink-600 transition-all" style={{ width: `${pct}%` }} />
       </div>
-      <details className="text-[11px] text-gray-600">
-        <summary className="cursor-pointer text-gray-500 select-none">Detall per torns</summary>
-        <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-1">
-          {stats.byBlock.map((b) => (
-            <span key={b.block}>
-              {b.block}: <strong>{b.free}</strong>/{b.total}
-            </span>
-          ))}
-        </div>
-      </details>
+      {/* Amb un sol bloc el desglossament només repetiria la xifra de dalt. */}
+      {stats.byBlock.length > 1 && (
+        <details className="text-[11px] text-gray-600">
+          <summary className="cursor-pointer text-gray-500 select-none">Detall per torns</summary>
+          <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-1">
+            {stats.byBlock.map((b) => (
+              <span key={b.block}>
+                {b.block}: <strong>{b.free}</strong>/{b.total}
+              </span>
+            ))}
+          </div>
+        </details>
+      )}
     </div>
   );
 }

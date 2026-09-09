@@ -3,7 +3,7 @@ import Link from "next/link";
 const CARDS = [
   {
     href: "/tardeo", title: "TARDEO FINAL D'ESTIU", desc: "Dissabte 19 de setembre", emoji: "🌅",
-    badge: "Obert", badgeClass: "bg-pink-100 text-pink-700",
+    badge: "Obert", badgeClass: "bg-emerald-100 text-emerald-800",
   },
   {
     href: "/gatzara", title: "GATZARA SONORA", desc: "16 i 17 de juliol", emoji: "🎪",
