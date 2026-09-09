@@ -70,6 +70,12 @@ describe("solapaments reals del Tardeo (Dia 19/09)", () => {
     expect(findOverlap(p(23), [p(27)])?.num).toBe(27);
   });
 
+  it("1:05-2:30 xoca amb 23:50-1:15: l'inici de matinada compta com l'endemà", () => {
+    // Sense el desplaçament de les hores < 6:00, p(35) començaria a les 65
+    // minuts i aquest solapament de 10 minuts passaria desapercebut.
+    expect(findOverlap(p(35), [p(27)])?.num).toBe(27);
+  });
+
   it("el muntatge de les 10:30 no té rang i no bloqueja res", () => {
     expect(findOverlap(p(1), [p(7), p(47)])).toBeNull();
   });
