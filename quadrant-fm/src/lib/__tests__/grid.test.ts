@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { buildGrid, computeStats, FM_COLS, FRIGO_COLS, GATZARA_COLS } from "../grid";
+import { buildGrid, computeStats, FM_COLS, FRIGO_COLS, GATZARA_COLS, TARDEO_COLS } from "../grid";
 import type { Slot } from "../types";
 
 function slot(p: Partial<Slot>): Slot {
@@ -70,11 +70,40 @@ describe("computeStats", () => {
       { block: "B2", free: 1, total: 1 },
     ]);
   });
+
+  it("no compta les places bloquejades ni al total ni als lliures", () => {
+    const slots: Slot[] = [
+      slot({ id: 1, taken_by: null }),
+      slot({ id: 2, taken_by: "Marc" }),
+      slot({ id: 3, blocked: true, taken_by: null }),
+      slot({ id: 4, blocked: true, taken_by: "Altra colla" }),
+    ];
+    const st = computeStats(slots);
+    expect(st.total).toBe(2);
+    expect(st.free).toBe(1);
+    expect(st.byBlock).toEqual([{ block: "B1", free: 1, total: 2 }]);
+  });
+
+  it("un bloc només amb places bloquejades no surt al detall per torns", () => {
+    const slots: Slot[] = [
+      slot({ id: 1, block: "B1", taken_by: null }),
+      slot({ id: 2, block: "B2", blocked: true, taken_by: null }),
+    ];
+    const st = computeStats(slots);
+    expect(st.byBlock.map((b) => b.block)).toEqual(["B1"]);
+    expect(st.total).toBe(1);
+  });
 });
 
 describe("column constants", () => {
   it("FM has 11 columns, FRIGO has 4", () => {
     expect(FM_COLS).toHaveLength(11);
     expect(FRIGO_COLS).toHaveLength(4);
+  });
+});
+
+describe("TARDEO_COLS", () => {
+  it("cobreix les 8 columnes d'Excel que fa servir el Tardeo", () => {
+    expect(TARDEO_COLS).toEqual(["N", "O", "P", "Q", "R", "S", "T", "U"]);
   });
 });

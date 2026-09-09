@@ -64,7 +64,8 @@ export function useSlots(externalId: string | null, event: EventId) {
 
   useEffect(() => { loadMine(); }, [loadMine]);
 
-  // Returns: "ok" | "dup" (already has one in this franja) | "taken" (lost race) | "error"
+  // Returns: "ok" | "dup" (already has one in this franja) | "taken" (lost race)
+  //        | "blocked" (another colla covers it) | "error" (id inexistent a la BD)
   const claim = useCallback(async (id: number, person: string, extId: string): Promise<string> => {
     const { data, error } = await supabase.rpc("claim_slot", { p_id: id, p_person: person, p_external_id: extId });
     if (error) { setError(error.message); return "error"; }
@@ -75,6 +76,11 @@ export function useSlots(externalId: string | null, event: EventId) {
       return "ok";
     }
     if (data === "dup") return "dup";
+    // "blocked" i "error" han d'anar SEMPRE abans del fallthrough "taken":
+    // aquest últim és el catch-all i donaria un missatge fals ("te l'ha
+    // agafat algú altre") si es deixés caure fins aquí.
+    if (data === "blocked") return "blocked";
+    if (data === "error") return "error";
     await load(); // lost the race; refresh truth
     return "taken";
   }, [load]);

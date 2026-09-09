@@ -3,6 +3,7 @@ import type { Slot, GridBlock, GridRow, Stats, BlockStat } from "./types";
 export const FM_COLS = ["C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
 export const FRIGO_COLS = ["C", "D", "E", "F"];
 export const GATZARA_COLS = ["N", "O", "P", "Q", "R", "S"];
+export const TARDEO_COLS = ["N", "O", "P", "Q", "R", "S", "T", "U"];
 
 export function buildGrid(slots: Slot[], cols: string[]): GridBlock[] {
   const blocks: GridBlock[] = [];
@@ -32,9 +33,14 @@ export function buildGrid(slots: Slot[], cols: string[]): GridBlock[] {
 
 export function computeStats(slots: Slot[]): Stats {
   let free = 0;
+  let total = 0;
   const order: string[] = [];
   const map = new Map<string, BlockStat>();
   for (const s of slots) {
+    // Les places que cobreix una altra colla no són nostres: si comptessin,
+    // el percentatge de la colla sortiria diluït.
+    if (s.blocked) continue;
+    total++;
     if (s.taken_by === null) free++;
     let bs = map.get(s.block);
     if (!bs) {
@@ -45,5 +51,5 @@ export function computeStats(slots: Slot[]): Stats {
     bs.total++;
     if (s.taken_by === null) bs.free++;
   }
-  return { free, total: slots.length, byBlock: order.map((b) => map.get(b)!) };
+  return { free, total, byBlock: order.map((b) => map.get(b)!) };
 }

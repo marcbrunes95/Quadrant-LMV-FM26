@@ -12,6 +12,7 @@ import { StatsBar } from "@/components/StatsBar";
 import { ShiftGrid } from "@/components/ShiftGrid";
 import { MedalBadge } from "@/components/MedalBadge";
 import { Confetti } from "@/components/Confetti";
+import { Countdown } from "@/components/Countdown";
 
 const USER_KEY = "quadrant-fm-user";
 
@@ -42,14 +43,18 @@ export function EventPage({ config }: { config: EventConfig }) {
 
   // How many slots the current person holds — by ID (DNI) when available.
   const myName = user?.name ?? null;
+  // Les places bloquejades porten noms d'una altra colla (no de La Mama Ve) i
+  // els noms es repeteixen, així que mai poden comptar com a "meves" en el
+  // fallback per nom.
   const myCount = mineReady
     ? [...mineIds].filter((id) => eventIds.has(id)).length
-    : (myName ? slots.filter((s) => s.taken_by === myName).length : 0);
+    : (myName ? slots.filter((s) => !s.blocked && s.taken_by === myName).length : 0);
   const prevCount = useRef<number | null>(null);
   const baselined = useRef(false);
   const [celebrating, setCelebrating] = useState(false);
   const [confetti, setConfetti] = useState(false);
   const t = config.medal;
+  const dem = config.article ?? "aquesta";
 
   useEffect(() => {
     if (loading || !myName) return;
@@ -60,9 +65,9 @@ export function EventPage({ config }: { config: EventConfig }) {
       const reachedPlata = prev < t.plata && myCount >= t.plata;
       const reachedBronze = prev < t.bronze && myCount >= t.bronze;
       const msg =
-        reachedOr ? `Ja ets OR! 🥇 Gràcies per col·laborar amb La Mama Ve fins a ${t.or} vegades durant aquesta ${config.name}!` :
-        reachedPlata ? `Ja ets PLATA! 🥈 Gràcies per col·laborar amb La Mama Ve fins a ${t.plata} vegades durant aquesta ${config.name}!` :
-        reachedBronze ? `Ja ets BRONZE! 🥉 Gràcies per col·laborar amb La Mama Ve durant aquesta ${config.name}!` :
+        reachedOr ? `Ja ets OR! 🥇 Gràcies per col·laborar amb La Mama Ve fins a ${t.or} vegades durant ${dem} ${config.name}!` :
+        reachedPlata ? `Ja ets PLATA! 🥈 Gràcies per col·laborar amb La Mama Ve fins a ${t.plata} vegades durant ${dem} ${config.name}!` :
+        reachedBronze ? `Ja ets BRONZE! 🥉 Gràcies per col·laborar amb La Mama Ve durant ${dem} ${config.name}!` :
         `Genial! Ja portes ${myCount} torns 🎉`;
       showInfo(msg);
       setCelebrating(true);
@@ -74,7 +79,7 @@ export function EventPage({ config }: { config: EventConfig }) {
       }
     }
     prevCount.current = myCount;
-  }, [loading, myName, myCount, showInfo, t, config.name]);
+  }, [loading, myName, myCount, showInfo, t, config.name, dem]);
 
   if (!ready) return null;
   if (!user) {
@@ -88,17 +93,20 @@ export function EventPage({ config }: { config: EventConfig }) {
   const name = user.name;
 
   // Ownership strictly by ID (DNI); name match is only a temporary fallback
-  // until the my_slots RPC is deployed.
+  // until the my_slots RPC is deployed. Exclou les bloquejades: porten noms
+  // d'una altra colla i podrien coincidir amb el nom d'un soci.
   const isMine = (slot: Slot) =>
-    mineReady ? mineIds.has(slot.id) : slot.taken_by === name;
+    mineReady ? mineIds.has(slot.id) : (!slot.blocked && slot.taken_by === name);
 
-  const frozenMsg = `Aquesta ${config.name} ja ha acabat: el quadrant és només de consulta 🔒`;
+  const frozenMsg = `${dem[0].toUpperCase()}${dem.slice(1)} ${config.name} ja ha acabat: el quadrant és només de consulta 🔒`;
 
   const handleClaim = (slotId: number) => {
     if (config.frozen) { showInfo(frozenMsg); return; }
+    const target = slots.find((s) => s.id === slotId);
+    // Places d'una altra colla: ni tan sols s'intenta cridar l'RPC.
+    if (target?.blocked) { showInfo("Aquesta plaça la cobreix una altra colla"); return; }
     // Bloqueig per solapament d'hores dins del mateix dia (p. ex. cap de
     // pista 18:00-0:00 coincideix amb barra 19:00-20:30).
-    const target = slots.find((s) => s.id === slotId);
     if (target) {
       const clash = findOverlap(target, slots.filter((s) => isMine(s)));
       if (clash) {
@@ -108,6 +116,8 @@ export function EventPage({ config }: { config: EventConfig }) {
     }
     claim(slotId, name, user.id).then((status) => {
       if (status === "dup") showInfo("Ja tens una plaça en aquesta franja horària");
+      else if (status === "blocked") showInfo("Aquesta plaça la cobreix una altra colla");
+      else if (status === "error") showInfo("Aquesta plaça encara no està disponible");
       else if (status === "taken") showInfo("Aquesta plaça l'acaba d'agafar algú altre");
     });
   };
@@ -150,9 +160,10 @@ export function EventPage({ config }: { config: EventConfig }) {
               🔒 Esdeveniment finalitzat — només consulta
             </p>
           )}
+          {config.countdownTo && <Countdown target={config.countdownTo} />}
           <StatsBar stats={stats} />
           <div className="flex items-start justify-between gap-3">
-            <Legend />
+            {config.showLegend === false ? <span /> : <Legend />}
             {config.programPdf && (
               <a
                 href={config.programPdf}
@@ -174,8 +185,8 @@ export function EventPage({ config }: { config: EventConfig }) {
           <p className="text-gray-500">Carregant…</p>
         ) : (
           <>
-            {config.grids.map((g) => (
-              <ShiftGrid key={g.title} title={g.title}
+            {config.grids.map((g, i) => (
+              <ShiftGrid key={g.title || i} title={g.title}
                 slots={slots.filter((s) => g.tables.includes(s.table))} cols={g.cols}
                 isMine={isMine} onClaim={handleClaim}
                 onRelease={handleRelease} onInfo={showInfo} />

@@ -1,4 +1,4 @@
-import { FM_COLS, FRIGO_COLS, GATZARA_COLS } from "./grid";
+import { FM_COLS, FRIGO_COLS, GATZARA_COLS, TARDEO_COLS } from "./grid";
 import type { EventId, MedalThresholds, TableName } from "./types";
 
 export interface EventGrid {
@@ -16,6 +16,12 @@ export interface EventConfig {
   programPdf?: string;
   /** Esdeveniment acabat: es pot consultar però no tocar res. */
   frozen?: boolean;
+  /** Instant ISO amb zona: mostra un compte enrere informatiu (no tanca res). */
+  countdownTo?: string;
+  /** Fals als esdeveniments sense nivells d'experiència. Per defecte, cert. */
+  showLegend?: boolean;
+  /** Demostratiu català del nom: "aquesta FM", "aquest Tardeo". */
+  article?: "aquesta" | "aquest";
 }
 
 export const FM_EVENT: EventConfig = {
@@ -38,4 +44,15 @@ export const GATZARA_EVENT: EventConfig = {
     { title: "Gatzara Sonora", tables: ["GATZARA_BARRA", "GATZARA_CUINA"], cols: GATZARA_COLS },
   ],
   frozen: true,
+};
+
+export const TARDEO_EVENT: EventConfig = {
+  event: "tardeo",
+  name: "Tardeo",
+  article: "aquest",
+  medal: { bronze: 1, plata: 2, or: 3 },
+  // Sense títol: el quadrant només ensenya el dia i les franges.
+  grids: [{ title: "", tables: ["TARDEO"], cols: TARDEO_COLS }],
+  countdownTo: "2026-09-19T19:00:00+02:00",
+  showLegend: false,
 };

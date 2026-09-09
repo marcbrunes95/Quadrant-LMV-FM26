@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { timeRange, rangesOverlap, findOverlap } from "../franja";
 import type { SlotMeta } from "../types";
+import { slotsForEvent } from "../slots-data";
 
 function meta(p: Partial<SlotMeta>): SlotMeta {
   return { id: 1, table: "GATZARA_BARRA", block: "Gatzara divendres 17/07",
@@ -41,5 +42,46 @@ describe("findOverlap", () => {
   it("el muntatge (hora sola) no bloqueja per solapament", () => {
     const target = meta({ id: 207, time: "11:00" });
     expect(findOverlap(target, [capPista])).toBeNull();
+  });
+});
+
+describe("solapaments reals del Tardeo (Dia 19/09)", () => {
+  const tardeo = slotsForEvent("tardeo");
+  const p = (num: number) => tardeo.find((s) => s.num === num)!;
+
+  it("cuina 18:00-20:00 xoca amb barra 19:00-21:00", () => {
+    expect(findOverlap(p(40), [p(7)])?.num).toBe(7);
+  });
+
+  it("cuina 20:00-22:00 xoca amb barra 20:50-22:30", () => {
+    expect(findOverlap(p(43), [p(16)])?.num).toBe(16);
+  });
+
+  it("l'últim torn de barra xoca amb el desmuntatge", () => {
+    expect(findOverlap(p(35), [p(47)])?.num).toBe(47);
+  });
+
+  it("el cap de cuina 18:00-22:00 xoca amb les dues franges de cuina", () => {
+    expect(findOverlap(p(39), [p(40)])?.num).toBe(40);
+    expect(findOverlap(p(39), [p(44)])?.num).toBe(44);
+  });
+
+  it("22:20-00:00 i 23:50-1:15 se solapen tot i creuar la mitjanit", () => {
+    expect(findOverlap(p(23), [p(27)])?.num).toBe(27);
+  });
+
+  it("1:05-2:30 xoca amb 23:50-1:15: l'inici de matinada compta com l'endemà", () => {
+    // Sense el desplaçament de les hores < 6:00, p(35) començaria a les 65
+    // minuts i aquest solapament de 10 minuts passaria desapercebut.
+    expect(findOverlap(p(35), [p(27)])?.num).toBe(27);
+  });
+
+  it("el muntatge de les 10:30 no té rang i no bloqueja res", () => {
+    expect(findOverlap(p(1), [p(7), p(47)])).toBeNull();
+  });
+
+  it("dues franges consecutives que només es toquen no xoquen", () => {
+    // 18:00-20:00 acaba just quan comença 20:00-22:00.
+    expect(findOverlap(p(40), [p(43)])).toBeNull();
   });
 });

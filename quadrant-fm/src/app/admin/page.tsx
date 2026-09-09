@@ -7,6 +7,8 @@ export default function Admin() {
   const [key, setKey] = useState("");
   const [showKey, setShowKey] = useState(false);
   const [id, setId] = useState("");
+  const [blockedId, setBlockedId] = useState("");
+  const [blockedName, setBlockedName] = useState("");
   const [msg, setMsg] = useState("");
   const [events, setEvents] = useState<SlotEvent[] | null>(null);
   const [filter, setFilter] = useState("");
@@ -39,6 +41,20 @@ export default function Admin() {
     if (!confirm("Segur que vols buidar TOTES les places?")) return;
     const r = await callAdmin("/api/admin/clear", {});
     setMsg(r.ok ? "Totes les places buidades" : r.error);
+  }
+
+  async function assignBlocked() {
+    const r = await callAdmin("/api/admin/assign", {
+      id: Number(blockedId),
+      name: blockedName,
+    });
+    if (!r.ok) { setMsg(r.error); return; }
+    setMsg(
+      blockedName.trim()
+        ? `Plaça ${blockedId} assignada a ${blockedName.trim()}`
+        : `Plaça ${blockedId} buidada`,
+    );
+    setBlockedName("");
   }
 
   async function loadHistory() {
@@ -88,12 +104,30 @@ export default function Admin() {
             </button>
           </div>
           <div className="flex gap-2">
-            <input value={id} onChange={(e) => setId(e.target.value)} placeholder="Nº plaça"
+            <input value={id} onChange={(e) => setId(e.target.value)} placeholder="Id intern"
               className="flex-1 border rounded px-3 py-2" />
             <button onClick={release} className="bg-pink-600 text-white rounded px-4">Alliberar</button>
           </div>
           <button onClick={clearAll} className="w-full bg-red-600 text-white rounded py-2">Buidar-ho tot</button>
           {msg && <p className="text-sm text-gray-700">{msg}</p>}
+        </div>
+
+        <div className="bg-white rounded-xl shadow p-5 space-y-3">
+          <h2 className="font-bold">Places d&apos;una altra colla</h2>
+          <p className="text-xs text-gray-500">
+            Escriu el nom que et passin. Deixa el nom en blanc per buidar la plaça.
+            Només funciona amb places bloquejades. Al Tardeo, l&apos;id és 300 + el
+            número que es veu (la plaça 39 és l&apos;id 339).
+          </p>
+          <div className="flex gap-2">
+            <input value={blockedId} onChange={(e) => setBlockedId(e.target.value)}
+              placeholder="Id (301-352)" className="w-32 border rounded px-3 py-2" />
+            <input value={blockedName} onChange={(e) => setBlockedName(e.target.value)}
+              placeholder="Nom" className="flex-1 border rounded px-3 py-2" />
+            <button onClick={assignBlocked} className="bg-pink-600 text-white rounded px-4">
+              Desar
+            </button>
+          </div>
         </div>
 
         <div className="bg-white rounded-xl shadow p-5 space-y-3">
