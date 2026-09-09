@@ -2,6 +2,10 @@
 -- Executar UN cop al SQL Editor de Supabase. Idempotent.
 -- No toca cap fila existent: FM i Gatzara queden amb blocked = false.
 
+-- Tot o res: si `create or replace function` falla després de l'`alter
+-- table`, la transacció fa rollback i no queda cap migració a mitges.
+begin;
+
 alter table public.slots
   add column if not exists blocked boolean not null default false;
 
@@ -65,3 +69,5 @@ end;
 $$;
 
 grant execute on function public.claim_slot(int, text, text) to anon, authenticated;
+
+commit;

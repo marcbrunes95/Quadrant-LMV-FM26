@@ -40,7 +40,11 @@ if (error) { console.error("ERROR insert:", error.message); process.exit(1); }
 for (const r of rows) {
   const { error: e } = await sb.from("slots").update({ blocked: r.blocked })
     .eq("id", r.id).gte("id", 301).lte("id", 352);
-  if (e) { console.error("ERROR blocked", r.id, e.message); process.exit(1); }
+  if (e) {
+    console.error("ERROR blocked", r.id, e.message);
+    console.error("Torna a executar l'script: és idempotent i reprendrà on ha fallat.");
+    process.exit(1);
+  }
 }
 
 const t = await sb.from("slots").select("id", { count: "exact", head: true }).gte("id", 301).lte("id", 352);
@@ -49,5 +53,9 @@ const afterOthers = await sb.from("slots").select("id", { count: "exact", head: 
 
 console.log("Tardeo a BD:", t.count, "(esperat 52) · bloquejades:", b.count, "(esperat 26)");
 console.log("Altres esdeveniments abans:", beforeOthers.count, "| després:", afterOthers.count, "(han de ser iguals)");
-if (t.count !== 52 || b.count !== 26 || beforeOthers.count !== afterOthers.count) process.exit(1);
+if (t.count !== 52 || b.count !== 26 || beforeOthers.count !== afterOthers.count) {
+  console.error("\n*** ALGUNA COSA NO QUADRA — NO EXECUTIS RES MÉS ***");
+  console.error("Restaura des del backup si cal:", backup);
+  process.exit(1);
+}
 console.log("OK");
