@@ -17,6 +17,28 @@ export function SlotCell({ slot, mine, onClaim, onRelease, onInfo }: Props) {
   // Número visible (Gatzara mostra 1-51); l'id intern segueix manant.
   const num = slot.num ?? slot.id;
 
+  // Places d'una altra colla: es veuen (amb el número i, si el sabem, el nom)
+  // però no són nostres, així que no hi ha ni claim ni release possible.
+  if (slot.blocked) {
+    return (
+      <button
+        onClick={() => onInfo?.(`Plaça ${num} · la cobreix una altra colla`)}
+        title={`Plaça ${num} · la cobreix una altra colla`}
+        className="h-9 w-full rounded-md border border-black/10 px-1 leading-none overflow-hidden flex flex-col items-center justify-center text-white"
+        style={{ backgroundColor: "#666666" }}
+      >
+        {slot.taken_by ? (
+          <>
+            <span className="text-[9px] opacity-70">#{num}</span>
+            <span className="block w-full truncate text-[11px] font-semibold">{slot.taken_by}</span>
+          </>
+        ) : (
+          <span className="text-sm font-bold opacity-80">{num}</span>
+        )}
+      </button>
+    );
+  }
+
   if (free) {
     return (
       <button

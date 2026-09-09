@@ -52,4 +52,28 @@ describe("SlotCell", () => {
     fireEvent.click(screen.getByText("Alex"));
     expect(onRelease).not.toHaveBeenCalled();
   });
+
+  it("plaça bloquejada: mostra el número i no es pot agafar", () => {
+    const onClaim = vi.fn();
+    const onInfo = vi.fn();
+    render(
+      <SlotCell slot={{ ...base, id: 339, num: 39, blocked: true }} mine={false}
+        onClaim={onClaim} onRelease={vi.fn()} onInfo={onInfo} />,
+    );
+    expect(screen.getByText("39")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button"));
+    expect(onClaim).not.toHaveBeenCalled();
+    expect(onInfo).toHaveBeenCalledWith("Plaça 39 · la cobreix una altra colla");
+  });
+
+  it("plaça bloquejada amb nom: el mostra i no la pot alliberar ningú", () => {
+    const onRelease = vi.fn();
+    render(
+      <SlotCell slot={{ ...base, id: 339, num: 39, blocked: true, taken_by: "Jordi" }}
+        mine={true} onClaim={vi.fn()} onRelease={onRelease} onInfo={vi.fn()} />,
+    );
+    expect(screen.getByText("Jordi")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button"));
+    expect(onRelease).not.toHaveBeenCalled();
+  });
 });
