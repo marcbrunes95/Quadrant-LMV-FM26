@@ -104,7 +104,7 @@ export default function Admin() {
             </button>
           </div>
           <div className="flex gap-2">
-            <input value={id} onChange={(e) => setId(e.target.value)} placeholder="Nº plaça"
+            <input value={id} onChange={(e) => setId(e.target.value)} placeholder="Id intern"
               className="flex-1 border rounded px-3 py-2" />
             <button onClick={release} className="bg-pink-600 text-white rounded px-4">Alliberar</button>
           </div>

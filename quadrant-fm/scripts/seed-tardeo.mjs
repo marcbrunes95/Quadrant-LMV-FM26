@@ -37,14 +37,33 @@ const { error } = await sb.from("slots").upsert(rows, { onConflict: "id", ignore
 if (error) { console.error("ERROR insert:", error.message); process.exit(1); }
 
 // Re-sincronitza només el flag blocked (mai taken_by), dins del rang del Tardeo.
+// Quan es marca blocked: true, s'exigeix taken_by null perquè mai es
+// sobreescrigui una plaça que ja ha reclamat un voluntari real (deixaria el
+// seu nom dins d'una cel·la grisa i sense botó per donar-se de baixa).
+// Desmarcar (blocked: false) sí que és incondicional.
 for (const r of rows) {
-  const { error: e } = await sb.from("slots").update({ blocked: r.blocked })
-    .eq("id", r.id).gte("id", 301).lte("id", 352);
+  let query = sb.from("slots").update({ blocked: r.blocked }).eq("id", r.id).gte("id", 301).lte("id", 352);
+  if (r.blocked) query = query.is("taken_by", null);
+  const { error: e } = await query;
   if (e) {
     console.error("ERROR blocked", r.id, e.message);
     console.error("Torna a executar l'script: és idempotent i reprendrà on ha fallat.");
     process.exit(1);
   }
+}
+
+// Avís (no error): places que slots.json vol bloquejades però que ja té algú
+// apuntat — cal que una persona ho decideixi manualment.
+const conflicts = await sb.from("slots").select("id, taken_by")
+  .gte("id", 301).lte("id", 352).eq("blocked", true).not("taken_by", "is", null);
+if (conflicts.error) {
+  console.error("ERROR comprovant conflictes:", conflicts.error.message);
+} else if (conflicts.data.length > 0) {
+  console.warn(
+    "\n*** ATENCIÓ: hi ha places del Tardeo que slots.json vol bloquejar però que ja té algú apuntat ***",
+  );
+  console.warn("No s'han tocat. Decideix manualment què fer amb aquests ids:",
+    conflicts.data.map((r) => `${r.id} (${r.taken_by})`).join(", "));
 }
 
 const t = await sb.from("slots").select("id", { count: "exact", head: true }).gte("id", 301).lte("id", 352);
