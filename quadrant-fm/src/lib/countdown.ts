@@ -24,8 +24,8 @@ export function countdownParts(targetIso: string, now: Date): CountdownParts | n
 /** Text curt en català; només baixa al detall quan queda poc temps. */
 export function formatCountdown(p: CountdownParts): string {
   if (p.days > 0) {
-    const dies = p.days === 1 ? "Falta 1 dia" : `Falten ${p.days} dies`;
-    return p.hours > 0 ? `${dies} i ${p.hours} h` : dies;
+    const dayText = p.days === 1 ? "Falta 1 dia" : `Falten ${p.days} dies`;
+    return p.hours > 0 ? `${dayText} i ${p.hours} h` : dayText;
   }
   if (p.hours > 0) return `Falten ${p.hours} h ${p.minutes} min`;
   if (p.minutes > 0) return `Falten ${p.minutes} min`;
