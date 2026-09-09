@@ -64,7 +64,8 @@ export function useSlots(externalId: string | null, event: EventId) {
 
   useEffect(() => { loadMine(); }, [loadMine]);
 
-  // Returns: "ok" | "dup" (already has one in this franja) | "taken" (lost race) | "error"
+  // Returns: "ok" | "dup" (already has one in this franja) | "taken" (lost race)
+  //        | "blocked" (another colla covers it) | "error"
   const claim = useCallback(async (id: number, person: string, extId: string): Promise<string> => {
     const { data, error } = await supabase.rpc("claim_slot", { p_id: id, p_person: person, p_external_id: extId });
     if (error) { setError(error.message); return "error"; }
@@ -74,6 +75,7 @@ export function useSlots(externalId: string | null, event: EventId) {
       setMineIds((prev) => new Set(prev).add(id));
       return "ok";
     }
+    if (data === "blocked") return "blocked";
     if (data === "dup") return "dup";
     await load(); // lost the race; refresh truth
     return "taken";

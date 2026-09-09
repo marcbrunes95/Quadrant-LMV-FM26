@@ -12,6 +12,7 @@ import { StatsBar } from "@/components/StatsBar";
 import { ShiftGrid } from "@/components/ShiftGrid";
 import { MedalBadge } from "@/components/MedalBadge";
 import { Confetti } from "@/components/Confetti";
+import { Countdown } from "@/components/Countdown";
 
 const USER_KEY = "quadrant-fm-user";
 
@@ -50,6 +51,7 @@ export function EventPage({ config }: { config: EventConfig }) {
   const [celebrating, setCelebrating] = useState(false);
   const [confetti, setConfetti] = useState(false);
   const t = config.medal;
+  const dem = config.article ?? "aquesta";
 
   useEffect(() => {
     if (loading || !myName) return;
@@ -60,9 +62,9 @@ export function EventPage({ config }: { config: EventConfig }) {
       const reachedPlata = prev < t.plata && myCount >= t.plata;
       const reachedBronze = prev < t.bronze && myCount >= t.bronze;
       const msg =
-        reachedOr ? `Ja ets OR! 🥇 Gràcies per col·laborar amb La Mama Ve fins a ${t.or} vegades durant aquesta ${config.name}!` :
-        reachedPlata ? `Ja ets PLATA! 🥈 Gràcies per col·laborar amb La Mama Ve fins a ${t.plata} vegades durant aquesta ${config.name}!` :
-        reachedBronze ? `Ja ets BRONZE! 🥉 Gràcies per col·laborar amb La Mama Ve durant aquesta ${config.name}!` :
+        reachedOr ? `Ja ets OR! 🥇 Gràcies per col·laborar amb La Mama Ve fins a ${t.or} vegades durant ${dem} ${config.name}!` :
+        reachedPlata ? `Ja ets PLATA! 🥈 Gràcies per col·laborar amb La Mama Ve fins a ${t.plata} vegades durant ${dem} ${config.name}!` :
+        reachedBronze ? `Ja ets BRONZE! 🥉 Gràcies per col·laborar amb La Mama Ve durant ${dem} ${config.name}!` :
         `Genial! Ja portes ${myCount} torns 🎉`;
       showInfo(msg);
       setCelebrating(true);
@@ -74,7 +76,7 @@ export function EventPage({ config }: { config: EventConfig }) {
       }
     }
     prevCount.current = myCount;
-  }, [loading, myName, myCount, showInfo, t, config.name]);
+  }, [loading, myName, myCount, showInfo, t, config.name, dem]);
 
   if (!ready) return null;
   if (!user) {
@@ -92,13 +94,15 @@ export function EventPage({ config }: { config: EventConfig }) {
   const isMine = (slot: Slot) =>
     mineReady ? mineIds.has(slot.id) : slot.taken_by === name;
 
-  const frozenMsg = `Aquesta ${config.name} ja ha acabat: el quadrant és només de consulta 🔒`;
+  const frozenMsg = `${dem[0].toUpperCase()}${dem.slice(1)} ${config.name} ja ha acabat: el quadrant és només de consulta 🔒`;
 
   const handleClaim = (slotId: number) => {
     if (config.frozen) { showInfo(frozenMsg); return; }
+    const target = slots.find((s) => s.id === slotId);
+    // Places d'una altra colla: ni tan sols s'intenta cridar l'RPC.
+    if (target?.blocked) { showInfo("Aquesta plaça la cobreix una altra colla"); return; }
     // Bloqueig per solapament d'hores dins del mateix dia (p. ex. cap de
     // pista 18:00-0:00 coincideix amb barra 19:00-20:30).
-    const target = slots.find((s) => s.id === slotId);
     if (target) {
       const clash = findOverlap(target, slots.filter((s) => isMine(s)));
       if (clash) {
@@ -108,6 +112,7 @@ export function EventPage({ config }: { config: EventConfig }) {
     }
     claim(slotId, name, user.id).then((status) => {
       if (status === "dup") showInfo("Ja tens una plaça en aquesta franja horària");
+      else if (status === "blocked") showInfo("Aquesta plaça la cobreix una altra colla");
       else if (status === "taken") showInfo("Aquesta plaça l'acaba d'agafar algú altre");
     });
   };
@@ -150,9 +155,10 @@ export function EventPage({ config }: { config: EventConfig }) {
               🔒 Esdeveniment finalitzat — només consulta
             </p>
           )}
+          {config.countdownTo && <Countdown target={config.countdownTo} />}
           <StatsBar stats={stats} />
           <div className="flex items-start justify-between gap-3">
-            <Legend />
+            {config.showLegend === false ? <span /> : <Legend />}
             {config.programPdf && (
               <a
                 href={config.programPdf}

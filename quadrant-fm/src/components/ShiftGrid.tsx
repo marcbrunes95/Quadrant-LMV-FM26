@@ -18,10 +18,12 @@ export function ShiftGrid({ title, slots, cols, isMine, onClaim, onRelease, onIn
 
   return (
     <section className="mb-8 rounded-2xl p-3 sm:p-4 shadow-sm" style={{ backgroundColor: "#ffebf4" }}>
-      {/* Nivell 1 — Activitat (super-card) */}
-      <h2 className="text-2xl font-extrabold uppercase tracking-wide mb-4" style={{ color: "#fa3c92" }}>
-        {title}
-      </h2>
+      {/* Nivell 1 — Activitat (super-card). El Tardeo no en porta. */}
+      {title && (
+        <h2 className="text-2xl font-extrabold uppercase tracking-wide mb-4" style={{ color: "#fa3c92" }}>
+          {title}
+        </h2>
+      )}
 
       <div className="space-y-4">
         {blocks.map((block) => (
