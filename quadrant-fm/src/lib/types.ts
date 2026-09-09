@@ -1,6 +1,6 @@
 export type SlotColor = "roig" | "vermell" | "verd" | "blanc";
-export type TableName = "FM" | "FRIGO" | "GATZARA_BARRA" | "GATZARA_CUINA";
-export type EventId = "fm" | "gatzara";
+export type TableName = "FM" | "FRIGO" | "GATZARA_BARRA" | "GATZARA_CUINA" | "TARDEO";
+export type EventId = "fm" | "gatzara" | "tardeo";
 
 export interface MedalThresholds {
   bronze: number;
@@ -22,6 +22,8 @@ export interface SlotMeta {
   event?: EventId;
   /** Número visible a la UI; absent = id (FM mostra id, Gatzara 1-51). */
   num?: number;
+  /** Plaça que cobreix una altra colla: ni es pot agafar ni compta al nostre %. */
+  blocked?: boolean;
 }
 
 /** Dynamic state from the DB. */
